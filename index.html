@@ -367,7 +367,15 @@
   .pulse{animation:pulse 2s ease-in-out infinite}
 
   /* ══ SUBHEADING ══ */
-  .sub-h { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--white); margin:28px 0 16px; }
+  .seance-check {
+    width:36px; height:36px; border-radius:10px;
+    background:rgba(255,255,255,0.08); border:2px solid rgba(255,92,138,0.35);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0; transition:all 0.2s;
+  }
+  .seance-done { background:linear-gradient(135deg,#1A1028,#2D1040) !important; border-color:var(--rose) !important; }
+  .seance-done .seance-check { background:var(--rose) !important; border-color:var(--rose) !important; }
+  .seance-done .seance-check::after { content:'✓'; font-size:18px; }
 
   /* HIIT */
   .hiit-ex-row {
@@ -422,7 +430,7 @@
 <section class="hero" id="home">
   <div class="hero-badge">✈ Objectif 20 Juin</div>
   <h1>SARAH<br><span>Trans-<br>formation</span></h1>
-  <p class="hero-sub">12 semaines · 84 jours · Tout changer</p>
+  <p class="hero-sub">12 semaines · <span id="heroSub">—</span> jours · Tout changer</p>
   <div class="hero-stats">
     <div class="stat-pill"><span class="stat-value">−10 kg</span><span class="stat-label">Objectif</span></div>
     <div class="stat-pill"><span class="stat-value">1 750</span><span class="stat-label">kcal / jour</span></div>
@@ -442,10 +450,10 @@
   <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
   <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
+  <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
   <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
   <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
-  <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
 </nav>
 
 <!-- PHASES -->
@@ -574,6 +582,35 @@
   </div>
 </section>
 
+<!-- HIIT TIMER -->
+<section class="section" id="hiit">
+  <div class="section-tag">Séance 5</div>
+  <h2 class="section-title">⏱ Timer HIIT</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">40s effort · 20s repos · 8 exercices · 4 tours</p>
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:24px;padding:28px 20px;text-align:center;">
+    <div id="hiitExName" style="font-size:13px;font-weight:700;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Appuie sur Démarrer</div>
+    <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:var(--white);line-height:1;">40</div>
+    <div id="hiitPhase" style="font-size:16px;font-weight:700;margin:8px 0 20px;color:var(--rose-light);">EFFORT 🔥</div>
+    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="hiitDots"></div>
+    <div style="display:flex;justify-content:center;gap:20px;margin-bottom:24px;">
+      <div style="text-align:center;">
+        <div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/4</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/8</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;">
+      <button id="hiitBtn" onclick="hiitToggle()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:16px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;">▶ Démarrer</button>
+      <button onclick="hiitReset()" style="flex:1;padding:16px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Reset</button>
+    </div>
+  </div>
+  <div style="margin-top:20px;"><div id="hiitList"></div></div>
+</section>
+
 <!-- NUTRITION -->
 <section class="section" id="alim">
   <div class="section-tag">1 750 kcal · 130g protéines</div>
@@ -618,53 +655,6 @@
   <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Durée minimum 3 mois</div><div class="an-desc">Continuer même si tu te sens mieux. 3 mois pour reconstituer les réserves de ferritine.</div></div></div>
 </section>
 
-<!-- TRACKER -->
-<section class="section" id="tracker">
-  <div class="section-tag">Suivi personnalisé</div>
-  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
-  <div class="week">
-    <div class="dot today" onclick="this.classList.toggle('done')">L</div>
-    <div class="dot" onclick="this.classList.toggle('done')">M</div>
-    <div class="dot" onclick="this.classList.toggle('done')">M</div>
-    <div class="dot" onclick="this.classList.toggle('done')">J</div>
-    <div class="dot" onclick="this.classList.toggle('done')">V</div>
-    <div class="dot" onclick="this.classList.toggle('done')">S</div>
-    <div class="dot" onclick="this.classList.toggle('done')">D</div>
-  </div>
-
-  <div class="w-block">
-    <div class="w-lbl">Poids du jour (kg)</div>
-    <div class="w-disp" id="wDisp">—<span> kg</span></div>
-    <div class="w-ctrls">
-      <button class="w-btn m" onclick="cw(-0.1)">−0.1</button>
-      <button class="w-btn m" onclick="cw(-1)">−1</button>
-      <button class="w-btn p" onclick="cw(1)">+1</button>
-      <button class="w-btn p" onclick="cw(0.1)">+0.1</button>
-    </div>
-  </div>
-  <button class="save-btn" onclick="saveW()">📌 Enregistrer le poids</button>
-  <div id="wHist"></div>
-</section>
-
-<!-- MENTAL -->
-<section class="section" id="mental">
-  <div class="section-tag">Mindset</div>
-  <h2 class="section-title">Mental &<br>Motivation</h2>
-  <div class="q-card"><div class="q-text">Chaque séance me rapproche de la version de moi que je veux être.</div><div class="q-ctx">À se dire avant chaque entraînement</div></div>
-  <div class="q-card"><div class="q-text">Je mange pour nourrir mon corps, pas pour punir mon âme.</div><div class="q-ctx">Face à la culpabilité alimentaire</div></div>
-  <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
-  <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
-  <div class="sub-h">Les 7 clés mentales</div>
-  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
-  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
-  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
-  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
-  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
-  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
-  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
-</section>
-
 <!-- RÈGLES -->
 <section class="section" id="regles">
   <div class="section-tag">Règles d'or</div>
@@ -687,50 +677,48 @@
   <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser tous les jours</div><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
 </section>
 
-<!-- HIIT TIMER -->
-<section class="section" id="hiit">
-  <div class="section-tag">Séance 5</div>
-  <h2 class="section-title">⏱ Timer HIIT</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">40s effort · 20s repos · 8 exercices · 4 tours</p>
-
-  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:24px;padding:28px 20px;text-align:center;">
-
-    <!-- Exercise name -->
-    <div id="hiitExName" style="font-size:13px;font-weight:700;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Appuie sur Démarrer</div>
-
-    <!-- Big timer -->
-    <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:var(--white);line-height:1;">40</div>
-
-    <!-- Phase label -->
-    <div id="hiitPhase" style="font-size:16px;font-weight:700;margin:8px 0 20px;color:var(--rose-light);">EFFORT 🔥</div>
-
-    <!-- Progress ring -->
-    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="hiitDots"></div>
-
-    <!-- Tour + exercice counter -->
-    <div style="display:flex;justify-content:center;gap:20px;margin-bottom:24px;">
-      <div style="text-align:center;">
-        <div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/4</div>
-        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div>
-      </div>
-      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
-      <div style="text-align:center;">
-        <div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/8</div>
-        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div>
-      </div>
+<!-- TRACKER -->
+<section class="section" id="tracker">
+  <div class="section-tag">Suivi personnalisé</div>
+  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🍑</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 1 — Fessiers & Cuisses</div></div>
     </div>
-
-    <!-- Buttons -->
-    <div style="display:flex;gap:12px;">
-      <button id="hiitBtn" onclick="hiitToggle()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:16px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.15s;">▶ Démarrer</button>
-      <button onclick="hiitReset()" style="flex:1;padding:16px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Reset</button>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🎵</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 2 — Body Pump</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">💪</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 3 — Dos, Bras & Taille</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🏃‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 4 — Footing</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🔥</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 5 — HIIT Circuit</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🚴‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 6 — RPM / Spinning</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🧘‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Jour 7 — Récupération</div></div>
     </div>
   </div>
+  <div id="seanceCount" style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px;font-weight:600;">0 / 6 séances cette semaine</div>
 
-  <!-- Exercise list -->
-  <div style="margin-top:20px;">
-    <div id="hiitList"></div>
+  <div class="w-block">
+    <div class="w-lbl">Poids du jour (kg)</div>
+    <div class="w-disp" id="wDisp">—<span> kg</span></div>
+    <div class="w-ctrls">
+      <button class="w-btn m" onclick="cw(-0.1)">−0.1</button>
+      <button class="w-btn m" onclick="cw(-1)">−1</button>
+      <button class="w-btn p" onclick="cw(1)">+1</button>
+      <button class="w-btn p" onclick="cw(0.1)">+0.1</button>
+    </div>
   </div>
+  <button class="save-btn" onclick="saveW()">📌 Enregistrer le poids</button>
+  <div id="wHist"></div>
 </section>
 
 <!-- MESURES -->
@@ -738,18 +726,33 @@
   <div class="section-tag">Suivi corporel</div>
   <h2 class="section-title">Mesures<br>hebdomadaires</h2>
   <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">À prendre le dimanche matin, à jeun, toujours au même endroit 📏</p>
-
-  <!-- Input semaine -->
   <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
     <div style="font-size:12px;color:var(--light);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Saisir les mesures de cette semaine</div>
-
     <div id="mesureInputs"></div>
-
-    <button onclick="saveMesures()" style="width:100%;margin-top:16px;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📏 Enregistrer les mesures</button>
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button onclick="saveMesures()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📏 Enregistrer</button>
+      <button onclick="resetDerniereMesure()" style="flex:1;padding:16px;background:rgba(255,80,80,0.15);color:#FF9090;border:1px solid rgba(255,80,80,0.35);border-radius:14px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="resetMesureBtn">🗑 Annuler</button>
+    </div>
   </div>
-
-  <!-- Historique mesures -->
   <div id="mesureHistory"></div>
+</section>
+
+<!-- MENTAL -->
+<section class="section" id="mental">
+  <div class="section-tag">Mindset</div>
+  <h2 class="section-title">Mental &<br>Motivation</h2>
+  <div class="q-card"><div class="q-text">Chaque séance me rapproche de la version de moi que je veux être.</div><div class="q-ctx">À se dire avant chaque entraînement</div></div>
+  <div class="q-card"><div class="q-text">Je mange pour nourrir mon corps, pas pour punir mon âme.</div><div class="q-ctx">Face à la culpabilité alimentaire</div></div>
+  <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
+  <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
+  <div class="sub-h">Les 7 clés mentales</div>
+  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
+  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
+  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
+  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
+  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
+  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
+  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
 </section>
 
 <!-- FOOTER -->
@@ -869,6 +872,7 @@ function updCd(){
   if(diff<=0){['cdD','cdH','cdM'].forEach(id=>document.getElementById(id).textContent='0');return;}
   document.getElementById('cdD').textContent=Math.floor(diff/86400000);
   document.getElementById('heroDays').textContent=Math.floor(diff/86400000)+' jours';
+  document.getElementById('heroSub').textContent=Math.floor(diff/86400000);
   document.getElementById('footerDays').textContent=Math.floor(diff/86400000);
   document.getElementById('cdH').textContent=Math.floor((diff%86400000)/3600000);
   document.getElementById('cdM').textContent=Math.floor((diff%3600000)/60000);
@@ -886,6 +890,14 @@ function navTo(id,btn){
   document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+}
+
+function toggleSeance(el){
+  el.classList.toggle('seance-done');
+  const done = document.querySelectorAll('.seance-done').length;
+  const txt = done >= 6 ? `${done} / 6 séances ✅ Objectif atteint !` : `${done} / 6 séances cette semaine`;
+  document.getElementById('seanceCount').textContent = txt;
+  document.getElementById('seanceCount').style.color = done >= 6 ? 'var(--rose-light)' : 'var(--muted)';
 }
 
 updW(); rendH(); updCd(); updPb();
@@ -1061,6 +1073,18 @@ function mesRenderHistory(){
     }).join('');
     return `<div class="mes-hist-card"><div class="mes-hist-date">📅 ${entry.date}</div>${rows}</div>`;
   }).join('');
+}
+
+function resetDerniereMesure(){
+  if(!mesHist.length){ alert('Aucune mesure à supprimer.'); return; }
+  if(confirm(`Supprimer la dernière entrée du ${mesHist[0].date} ?`)){
+    mesHist.shift();
+    localStorage.setItem('mes_hist', JSON.stringify(mesHist));
+    mesRenderHistory();
+    const b = document.getElementById('resetMesureBtn');
+    b.textContent = '✅ Supprimé !';
+    setTimeout(()=>b.textContent='🗑 Annuler',2000);
+  }
 }
 
 mesRenderInputs(); mesRenderHistory();
