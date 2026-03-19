@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Sarah — Transformation Plan</title>
+<title>Sarah — Transformation</title>
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sarah 💪">
+<meta name="theme-color" content="#2D1045">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -783,11 +788,11 @@
   <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);">
     <div style="font-size:12px;color:var(--rose-light);font-weight:700;margin-bottom:8px;">© 2026 — Programme Sarah Slimani</div>
     <div style="font-size:11px;color:var(--muted);line-height:1.7;">Ce programme (plan alimentaire, entraînements, compléments, suivi) a été créé et conçu par <strong style="color:var(--light);">Yanis Bensaadi</strong> — Toute reproduction, copie, distribution ou utilisation commerciale de ce contenu, même partielle, sans autorisation écrite préalable est strictement interdite. Ce programme est destiné à un usage personnel et non commercial. Contenu protégé — Tous droits réservés.</div>
-    <div style="margin-top:12px;font-size:11px;color:var(--muted);">📩 Contact : <span style="color:var(--rose-light);">yanisb.lu@gmail.com</span></div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);">📩 Contact : <span style="color:var(--rose-light);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="354c545b5c46571b5940755258545c591b565a58">[email&#160;protected]</a></span></div>
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // FOOD DATA
 const fd = [
   {day:"Jour 1",kcal:1672,prot:132,gluc:162,meals:[
@@ -1204,8 +1209,8 @@ function resetDerniereMesure(){
     mesHist.shift();
     localStorage.setItem('mes_hist', JSON.stringify(mesHist));
     mesRenderHistory();
-    const b = document.getElementById('resetMesureBtn');
-    b.textContent = '✅ Supprimé !';
+    const b=document.getElementById('resetMesureBtn');
+    b.textContent='✅ Supprimé !';
     setTimeout(()=>b.textContent='🗑 Annuler',2000);
   }
 }
