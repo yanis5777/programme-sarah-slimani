@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Sarah — Transformation</title>
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sarah 💪">
+<meta name="theme-color" content="#2D1045">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #FF5C8A;
+    --rose-light: #FF8FAD;
+    --gold: #F0C060;
+    --white: #FFFFFF;
+    --light: #EAD8FF;
+    --muted: #C0A0E0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: #1A1028;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 430px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* ══ GRADIENT BG helper ══ */
+  .bg-section {
+    background: linear-gradient(170deg, #1A1028 0%, #2E1045 40%, #3A1255 70%, #1A1028 100%);
+  }
+  .bg-section-alt {
+    background: linear-gradient(170deg, #200E35 0%, #2D1048 40%, #1A1028 100%);
+  }
+
+  /* ══ HERO ══ */
+  .hero {
+    min-height: 100svh;
+    background: linear-gradient(160deg, #1A1028 0%, #3D1055 40%, #2A0840 70%, #1A1028 100%);
+    position: relative;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 40px 28px 52px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-80px; right:-60px;
+    width:360px; height:360px;
+    background: radial-gradient(circle, rgba(255,92,138,0.32) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:100px; left:-60px;
+    width:250px; height:250px;
+    background: radial-gradient(circle, rgba(130,40,220,0.28) 0%, transparent 65%);
+    pointer-events:none;
+  }
+
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(255,92,138,0.22);
+    border: 1px solid rgba(255,92,138,0.55);
+    border-radius:50px; padding:7px 16px;
+    font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+    color: var(--rose-light);
+    margin-bottom:22px; width:fit-content;
+  }
+  .hero h1 {
+    font-family:'Playfair Display', serif;
+    font-size:54px; font-weight:900; line-height:1.0; letter-spacing:-1px;
+    color: var(--white); margin-bottom:8px;
+  }
+  .hero h1 span { color:var(--rose); font-style:italic; }
+  .hero-sub { font-size:14px; color:var(--light); margin-bottom:36px; font-weight:400; }
+
+  .hero-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .stat-pill {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius:16px; padding:16px 18px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .stat-pill.accent {
+    background: linear-gradient(135deg, rgba(255,92,138,0.28), rgba(255,92,138,0.10));
+    border-color: rgba(255,92,138,0.55);
+    grid-column:span 2; flex-direction:row; align-items:center; justify-content:space-between;
+  }
+  .stat-value { font-family:'Playfair Display', serif; font-size:28px; font-weight:700; color:var(--white); }
+  .stat-label { font-size:11px; color:var(--light); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; }
+  .stat-pill.accent .stat-value { font-size:22px; color:var(--rose-light); }
+
+  /* ══ NAV ══ */
+  .sticky-nav {
+    position:sticky; top:0; z-index:100;
+    background: rgba(22,10,38,0.96);
+    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border-bottom: 1px solid rgba(255,92,138,0.25);
+    padding:0 12px; overflow-x:auto; scrollbar-width:none;
+    display:flex; gap:2px;
+  }
+  .sticky-nav::-webkit-scrollbar { display:none; }
+  .nav-btn {
+    flex-shrink:0; padding:14px 14px;
+    font-size:12px; font-weight:700; letter-spacing:0.04em;
+    color: var(--muted);
+    background:none; border:none; cursor:pointer;
+    white-space:nowrap; transition:color 0.2s;
+    font-family:'DM Sans', sans-serif;
+  }
+  .nav-btn.active { color:var(--rose); }
+
+  /* ══ SECTIONS ══ */
+  .section {
+    padding:44px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .section:nth-child(odd) { background: linear-gradient(180deg,#1A1028,#2D1045,#1A1028); }
+  .section:nth-child(even) { background: linear-gradient(180deg,#200E35,#2E1048,#200E35); }
+
+  .section-tag {
+    font-size:10px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--rose); margin-bottom:10px;
+  }
+  .section-title {
+    font-family:'Playfair Display', serif;
+    font-size:30px; font-weight:700; line-height:1.15;
+    color:var(--white); margin-bottom:26px;
+  }
+
+  /* ══ CARDS ══ */
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,92,138,0.28);
+    border-radius:20px; padding:22px 20px; margin-bottom:14px;
+    position:relative; overflow:hidden;
+  }
+  .card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--rose), var(--gold));
+  }
+  .card-header { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+  .month-num {
+    width:50px; height:50px;
+    background:linear-gradient(135deg, var(--rose), #990040);
+    border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif; font-size:24px; font-weight:900;
+    color:var(--white); flex-shrink:0;
+  }
+  .month-num.m2 { background:linear-gradient(135deg,#A040CC,#5A1080); }
+  .month-num.m3 { background:linear-gradient(135deg,var(--gold),#A06000); color:#1A1028; }
+  .card-title { font-size:18px; font-weight:700; color:var(--white); }
+  .card-sub { font-size:12px; color:var(--rose-light); font-weight:600; }
+  .card-body { font-size:14px; color:var(--light); line-height:1.7; margin-bottom:14px; }
+  .tags { display:flex; gap:8px; flex-wrap:wrap; }
+  .tag {
+    padding:5px 12px; border-radius:50px; font-size:11px; font-weight:700;
+    background:rgba(255,92,138,0.18); border:1px solid rgba(255,92,138,0.40);
+    color:var(--rose-light);
+  }
+
+  /* ══ TRAINING ══ */
+  .t-card {
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:18px; margin-bottom:12px; overflow:hidden;
+  }
+  .t-header {
+    padding:16px 18px; display:flex; align-items:center; gap:12px; cursor:pointer;
+  }
+  .t-icon {
+    width:40px; height:40px; border-radius:12px;
+    background:linear-gradient(135deg,rgba(255,92,138,0.35),rgba(255,92,138,0.12));
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; flex-shrink:0;
+  }
+  .t-name { font-size:15px; font-weight:700; color:var(--white); flex:1; }
+  .t-info { font-size:12px; color:var(--rose-light); font-weight:600; margin-top:2px; }
+  .chevron { color:var(--muted); font-size:13px; transition:transform 0.3s; }
+  .t-card.open .chevron { transform:rotate(180deg); }
+  .t-body { display:none; padding:4px 18px 18px; border-top:1px solid rgba(255,255,255,0.08); }
+  .t-card.open .t-body { display:block; }
+
+  .ex-row {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .ex-row:last-child { border-bottom:none; }
+  .ex-dot { width:7px; height:7px; border-radius:50%; background:var(--rose); margin-top:8px; flex-shrink:0; }
+  .ex-name { font-size:14px; font-weight:700; color:var(--white); }
+  .ex-detail { font-size:12px; color:var(--light); margin-top:2px; }
+  .ex-badge {
+    margin-left:auto; padding:4px 10px;
+    background:rgba(255,92,138,0.18); border:1px solid rgba(255,92,138,0.35);
+    border-radius:50px; font-size:11px; font-weight:700;
+    color:var(--rose-light); flex-shrink:0;
+  }
+  .fin-note {
+    margin-top:12px; padding:10px 14px;
+    background:rgba(255,92,138,0.12); border:1px solid rgba(255,92,138,0.28);
+    border-radius:10px; font-size:13px; color:var(--rose-light); font-weight:600;
+  }
+  .t-text { font-size:14px; color:var(--light); line-height:1.7; padding-top:12px; }
+
+  /* ══ FOOD ══ */
+  .f-card {
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:18px; margin-bottom:12px; overflow:hidden;
+  }
+  .f-header { padding:16px 18px; display:flex; justify-content:space-between; align-items:flex-start; cursor:pointer; }
+  .f-title { font-size:16px; font-weight:700; color:var(--white); }
+  .f-kcal { font-size:13px; color:var(--rose-light); font-weight:700; }
+  .f-macros { display:flex; gap:8px; margin-top:6px; flex-wrap:wrap; }
+  .m-chip {
+    font-size:11px; color:var(--white); background:rgba(255,255,255,0.12);
+    padding:3px 10px; border-radius:50px; font-weight:700;
+  }
+  .m-chip span { color:var(--rose-light); }
+  .f-body { display:none; padding:0 18px 18px; border-top:1px solid rgba(255,255,255,0.08); }
+  .f-card.open .f-body { display:block; }
+  .meal { margin-top:14px; }
+  .meal-lbl { font-size:10px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--rose); margin-bottom:5px; }
+  .meal-name { font-size:14px; font-weight:700; color:var(--white); }
+  .meal-ing { font-size:13px; color:var(--light); margin-top:2px; line-height:1.55; }
+
+  /* ══ SUPPLEMENTS ══ */
+  .sg { margin-bottom:26px; }
+  .sg-title {
+    font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:12px; padding:5px 14px; border-radius:50px; display:inline-block;
+  }
+  .sg-title.urg { background:rgba(255,80,80,0.18); color:#FF9090; border:1px solid rgba(255,80,80,0.40); }
+  .sg-title.p1  { background:rgba(255,92,138,0.18); color:var(--rose-light); border:1px solid rgba(255,92,138,0.40); }
+  .sg-title.p2  { background:rgba(240,192,96,0.15); color:var(--gold); border:1px solid rgba(240,192,96,0.35); }
+  .s-row {
+    display:flex; gap:12px; padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,0.07); align-items:flex-start;
+  }
+  .s-row:last-child { border-bottom:none; }
+  .s-chk {
+    width:24px; height:24px; border:2px solid rgba(255,92,138,0.50);
+    border-radius:8px; flex-shrink:0; margin-top:2px;
+    cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; color:white;
+  }
+  .s-chk.on { background:var(--rose); border-color:var(--rose); }
+  .s-name { font-size:14px; font-weight:700; color:var(--white); }
+  .s-time { font-size:12px; color:var(--light); margin-top:3px; line-height:1.5; }
+
+  /* ══ ANEMIA ══ */
+  .an-row { display:flex; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:flex-start; }
+  .an-badge { font-size:10px; font-weight:800; padding:3px 9px; border-radius:50px; flex-shrink:0; margin-top:2px; white-space:nowrap; }
+  .an-badge.ab { background:rgba(255,80,80,0.20); color:#FF9090; border:1px solid rgba(255,80,80,0.40); }
+  .an-badge.hi { background:rgba(255,92,138,0.18); color:var(--rose-light); border:1px solid rgba(255,92,138,0.35); }
+  .an-name { font-size:14px; font-weight:700; color:var(--white); }
+  .an-desc { font-size:12px; color:var(--light); margin-top:3px; line-height:1.55; }
+
+  /* ══ TRACKER ══ */
+  .week { display:flex; gap:8px; margin-bottom:26px; }
+  .dot {
+    flex:1; aspect-ratio:1; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.22);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800; color:var(--muted);
+    cursor:pointer; transition:all 0.2s;
+  }
+  .dot.done { background:var(--rose); border-color:var(--rose); color:white; }
+  .dot.today { border-color:var(--rose); color:var(--rose); }
+
+  .w-block {
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,92,138,0.35);
+    border-radius:18px; padding:22px; margin-bottom:14px;
+  }
+  .w-lbl { font-size:11px; color:var(--light); font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.08em; }
+  .w-disp { font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:var(--white); line-height:1; }
+  .w-disp span { font-size:24px; color:var(--muted); }
+  .w-ctrls { display:flex; gap:10px; margin-top:16px; }
+  .w-btn {
+    flex:1; padding:13px; border-radius:14px; border:none;
+    font-size:16px; font-weight:700; cursor:pointer;
+    font-family:'DM Sans',sans-serif; transition:all 0.15s;
+  }
+  .w-btn.m { background:rgba(255,255,255,0.10); color:var(--white); }
+  .w-btn.p { background:var(--rose); color:white; }
+  .w-btn:active { transform:scale(0.95); }
+
+  .save-btn {
+    width:100%; padding:17px;
+    background:linear-gradient(135deg,var(--rose),#AA0040);
+    color:white; border:none; border-radius:16px;
+    font-size:15px; font-weight:700; font-family:'DM Sans',sans-serif;
+    cursor:pointer; transition:all 0.2s;
+  }
+  .save-btn:active { transform:scale(0.97); }
+
+  .h-lbl { font-size:11px; color:var(--muted); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:14px 0 6px; }
+  .h-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .h-date { font-size:13px; color:var(--light); }
+  .h-val { font-size:15px; font-weight:700; color:var(--white); }
+  .h-diff { font-size:12px; font-weight:700; }
+  .h-diff.neg { color:#70F0A0; }
+  .h-diff.pos { color:#FF9090; }
+
+  /* ══ QUOTES / MENTAL ══ */
+  .q-card {
+    background:linear-gradient(135deg,rgba(255,92,138,0.14),rgba(130,40,220,0.12));
+    border:1px solid rgba(255,92,138,0.30);
+    border-radius:20px; padding:24px 20px; margin-bottom:14px; position:relative;
+  }
+  .q-card::before {
+    content:'"'; position:absolute; top:8px; left:14px;
+    font-family:'Playfair Display',serif; font-size:64px;
+    color:rgba(255,92,138,0.22); line-height:1; pointer-events:none;
+  }
+  .q-text { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; line-height:1.55; color:var(--white); padding-top:22px; margin-bottom:10px; }
+  .q-ctx { font-size:11px; color:var(--rose-light); font-weight:700; letter-spacing:0.07em; text-transform:uppercase; }
+
+  .k-row { display:flex; gap:14px; align-items:flex-start; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .k-num { width:32px; height:32px; background:var(--rose); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:white; flex-shrink:0; }
+  .k-text { font-size:14px; color:var(--light); line-height:1.65; }
+  .k-text strong { color:var(--white); font-weight:700; }
+
+  /* ══ RULES ══ */
+  .rh { font-size:14px; font-weight:800; margin:22px 0 12px; }
+  .rh.g { color:#70F0A0; }
+  .rh.r { color:#FF9090; }
+  .r-row { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .r-icon { font-size:18px; flex-shrink:0; width:26px; text-align:center; margin-top:2px; }
+  .r-name { font-size:14px; font-weight:700; color:var(--white); }
+  .r-desc { font-size:12px; color:var(--light); margin-top:3px; line-height:1.55; }
+
+  /* ══ PROGRESS BAR ══ */
+  .pb-wrap { margin:22px 0 0; }
+  .pb-top { display:flex; justify-content:space-between; margin-bottom:8px; }
+  .pb-lbl { font-size:13px; color:var(--light); font-weight:500; }
+  .pb-val { font-size:13px; font-weight:700; color:var(--rose-light); }
+  .pb { height:6px; background:rgba(255,255,255,0.10); border-radius:3px; overflow:hidden; }
+  .pb-fill { height:100%; background:linear-gradient(90deg,var(--rose),var(--gold)); border-radius:3px; transition:width 1.2s ease; }
+
+  /* ══ FOOTER ══ */
+  .footer {
+    text-align:center; padding:48px 24px 70px;
+    background:linear-gradient(180deg,#1A1028,#2D1040,#200E35);
+    border-top:1px solid rgba(255,255,255,0.06);
+  }
+  .cd-block {
+    background:linear-gradient(135deg,rgba(255,92,138,0.18),rgba(130,40,220,0.15));
+    border:1px solid rgba(255,92,138,0.35);
+    border-radius:22px; padding:22px; margin:0 0 28px;
+    display:flex; justify-content:space-around;
+  }
+  .cd-item { text-align:center; }
+  .cd-val { font-family:'Playfair Display',serif; font-size:40px; font-weight:900; color:var(--rose-light); line-height:1; }
+  .cd-unit { font-size:11px; color:var(--light); text-transform:uppercase; letter-spacing:0.08em; margin-top:4px; font-weight:700; }
+  .footer-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--white); margin-bottom:12px; }
+  .footer-sub { font-size:13px; color:var(--light); line-height:1.7; }
+
+  /* ══ ANIM ══ */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  .hero > * { animation:fadeUp 0.6s ease both; }
+  .hero-badge{animation-delay:0.1s} .hero h1{animation-delay:0.2s} .hero-sub{animation-delay:0.3s} .hero-stats{animation-delay:0.4s}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+  .pulse{animation:pulse 2s ease-in-out infinite}
+
+  /* ══ SUBHEADING ══ */
+  .seance-check {
+    width:36px; height:36px; border-radius:10px;
+    background:rgba(255,255,255,0.08); border:2px solid rgba(255,92,138,0.35);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0; transition:all 0.2s;
+  }
+  .seance-done { background:linear-gradient(135deg,#1A1028,#2D1040) !important; border-color:var(--rose) !important; }
+  .seance-done .seance-check { background:var(--rose) !important; border-color:var(--rose) !important; }
+  .seance-done .seance-check::after { content:'✓'; font-size:18px; }
+
+  /* HIIT */
+  .hiit-ex-row {
+    display:flex; align-items:center; gap:12px; padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .hiit-ex-num {
+    width:28px; height:28px; border-radius:8px;
+    background:rgba(255,92,138,0.15); border:1px solid rgba(255,92,138,0.30);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800; color:var(--rose-light); flex-shrink:0;
+  }
+  .hiit-ex-name { font-size:14px; font-weight:600; color:var(--white); flex:1; }
+  .hiit-ex-time { font-size:12px; color:var(--muted); font-weight:600; }
+  .hiit-ex-row.active-ex .hiit-ex-num { background:var(--rose); border-color:var(--rose); color:white; }
+  .hiit-ex-row.active-ex .hiit-ex-name { color:var(--rose-light); }
+  .hiit-dot-item {
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(255,255,255,0.15); transition:background 0.2s;
+  }
+  .hiit-dot-item.done { background:var(--rose); }
+  .hiit-dot-item.current { background:var(--gold); }
+
+  /* MESURES */
+  .mes-input-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .mes-label { font-size:13px; color:var(--light); font-weight:600; flex:1; }
+  .mes-input {
+    width:90px; padding:10px 12px;
+    background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20);
+    border-radius:12px; color:var(--white); font-size:15px; font-weight:700;
+    font-family:'DM Sans',sans-serif; text-align:center;
+  }
+  .mes-input:focus { outline:none; border-color:var(--rose); }
+  .mes-unit { font-size:12px; color:var(--muted); font-weight:600; width:25px; }
+  .mes-hist-card {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10);
+    border-radius:16px; padding:16px 18px; margin-bottom:10px;
+  }
+  .mes-hist-date { font-size:12px; color:var(--rose-light); font-weight:700; margin-bottom:10px; }
+  .mes-hist-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .mes-hist-row:last-child { border-bottom:none; }
+  .mes-hist-name { font-size:13px; color:var(--light); }
+  .mes-hist-val { font-size:13px; font-weight:700; color:var(--white); }
+  .mes-hist-diff { font-size:11px; font-weight:700; margin-left:8px; }
+  .mes-hist-diff.neg { color:#70F0A0; }
+  .mes-hist-diff.pos { color:#FF9090; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">✈ Objectif 20 Juin</div>
+  <h1>SARAH<br><span>Trans-<br>formation</span></h1>
+  <p class="hero-sub">12 semaines · <span id="heroSub">—</span> jours · Tout changer</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><span class="stat-value">−10 kg</span><span class="stat-label">Objectif</span></div>
+    <div class="stat-pill"><span class="stat-value">1 750</span><span class="stat-label">kcal / jour</span></div>
+    <div class="stat-pill"><span class="stat-value">6</span><span class="stat-label">Séances / sem</span></div>
+    <div class="stat-pill"><span class="stat-value">130 g</span><span class="stat-label">Protéines / jour</span></div>
+    <div class="stat-pill accent">
+      <div><div class="stat-value pulse" id="heroDays">— jours</div><div class="stat-label">Avant le voyage ✈</div></div>
+      <div style="font-size:40px;">🌊</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <button class="nav-btn active" onclick="navTo('mois',this)">Phases</button>
+  <button class="nav-btn" onclick="navTo('training',this)">Training</button>
+  <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
+  <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
+  <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
+  <button class="nav-btn" onclick="navTo('courses',this)">🛒 Courses</button>
+  <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
+  <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
+  <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
+  <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
+</nav>
+
+<!-- PHASES -->
+<section class="section" id="mois">
+  <div class="section-tag">Timeline · 3 mois</div>
+  <h2 class="section-title">Les 3 phases</h2>
+
+  <div class="card">
+    <div class="card-header"><div class="month-num">M1</div><div><div class="card-title">🌱 Mise en place</div><div class="card-sub">Semaines 1 à 4</div></div></div>
+    <p class="card-body">Ton corps s'adapte au déficit et aux entraînements. Légère fatigue possible les 2 premières semaines — c'est normal. Focus sur la régularité, pas la perfection. Le fer commence à agir.</p>
+    <div class="tags"><span class="tag">−2 à −4 kg</span><span class="tag">Nouvelles habitudes</span><span class="tag">Ferritine ↑</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="month-num m2">M2</div><div><div class="card-title">💪 Accélération</div><div class="card-sub">Semaines 5 à 8</div></div></div>
+    <p class="card-body">La fonte graisseuse est réelle et visible. Le galbe musculaire se dessine (fessiers, bras, ventre). Un plateau en S5-S6 est normal → réduire les glucides de 20g/j pendant 1 semaine.</p>
+    <div class="tags"><span class="tag">−5 à −7 kg total</span><span class="tag">Galbe visible</span><span class="tag">Énergie revenue</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="month-num m3">M3</div><div><div class="card-title">✨ Finition</div><div class="card-sub">Semaines 9 à 12</div></div></div>
+    <p class="card-body">Sprint final avant le voyage. Corps bien adapté, performances en hausse. Augmente l'intensité. La peau est lumineuse (collagène actif depuis 8 semaines). Chaque séance compte !</p>
+    <div class="tags"><span class="tag">−10 kg ✅</span><span class="tag">Corps sculpté</span><span class="tag">Peau lumineuse</span><span class="tag">PRÊTE ✈</span></div>
+  </div>
+
+  <div class="pb-wrap">
+    <div class="pb-top"><span class="pb-lbl">Progression globale</span><span class="pb-val" id="pbPct">0%</span></div>
+    <div class="pb"><div class="pb-fill" id="pbFill" style="width:0%"></div></div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="section" id="training">
+  <div class="section-tag">6 séances / semaine</div>
+  <h2 class="section-title">Programme<br>entraînements</h2>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🍑</div>
+      <div style="flex:1"><div class="t-name">Séance 1 — Fessiers & Cuisses</div><div class="t-info">Muscu · 7 exercices + stepmill</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body">
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Hip Thrust barre</div><div class="ex-detail">Squeeze fort en haut · pied à plat</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Squat gobelet</div><div class="ex-detail">Dos droit · genoux dans l'axe</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fente bulgare haltères</div><div class="ex-detail">Amplitude maximale</div></div><div class="ex-badge">3×10/j</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg press pieds hauts</div><div class="ex-detail">Plus de fessiers</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg curl couché</div><div class="ex-detail">Contrôle la descente</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Abducteur machine</div><div class="ex-detail">Lent et contrôlé</div></div><div class="ex-badge">3×20</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Gainage planche + relevé bassin</div><div class="ex-detail">Core + fessiers</div></div><div class="ex-badge">3×45s+15</div></div>
+      <div class="fin-note">🏃 Finition : 15 min stepmill / escalier</div>
+    </div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🎵</div>
+      <div style="flex:1"><div class="t-name">Séance 2 — Body Pump</div><div class="t-info">Cours collectif · 55 min · 400-600 kcal</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body"><p class="t-text">Tous les groupes musculaires. Idéal pour le galbe féminin. 400-600 kcal brûlées. Cours collectif obligatoire 2x/semaine.</p></div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">💪</div>
+      <div style="flex:1"><div class="t-name">Séance 3 — Dos, Bras & Taille</div><div class="t-info">Muscu · 7 exercices + elliptique</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body">
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Tirage horizontal câble</div><div class="ex-detail">Serrer omoplates · contrôle</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Rowing haltère unilatéral</div><div class="ex-detail">Dos plat · coude proche</div></div><div class="ex-badge">3×12/c</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Curl biceps haltères</div><div class="ex-detail">Supination en haut</div></div><div class="ex-badge">3×12</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Triceps câble corde</div><div class="ex-detail">Coudes fixes · étirement</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Russian Twist lesté</div><div class="ex-detail">Pieds levés · rotation complète</div></div><div class="ex-badge">3×20</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Relevé de jambes suspendu</div><div class="ex-detail">Bas du ventre</div></div><div class="ex-badge">3×12</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Planche latérale</div><div class="ex-detail">Obliques · taille</div></div><div class="ex-badge">3×30s/c</div></div>
+      <div class="fin-note">🏃 Finition : 10 min elliptique niveau 8</div>
+    </div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🏃‍♀️</div>
+      <div style="flex:1"><div class="t-name">Séance 4 — Footing</div><div class="t-info">Cardio · 30-45 min · FC 120-140 bpm</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body"><p class="t-text">Rythme "conversation" — si tu peux parler, c'est ok. Brûle graisse + cardio santé. Peut se faire le dimanche si besoin.</p></div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🔥</div>
+      <div style="flex:1"><div class="t-name">Séance 5 — HIIT Circuit ⭐</div><div class="t-info">La + importante · 4 tours · 2 min repos</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body">
+      <p style="font-size:12px;color:var(--light);padding:10px 0 4px;font-weight:600;">40s effort / 20s repos · 4 tours · 2 min repos entre chaque tour</p>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Burpees</div><div class="ex-detail">Corps entier · cardio intense</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Jump squats</div><div class="ex-detail">Fessiers + cuisses + explosivité</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Mountain climbers</div><div class="ex-detail">Ventre + cardio</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fentes sautées</div><div class="ex-detail">Cuisses + fessiers · brûle beaucoup</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Pompes adaptées</div><div class="ex-detail">Bras + poitrine + gainage</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">High knees</div><div class="ex-detail">Cardio maximal · brûle graisse</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Plank shoulder tap</div><div class="ex-detail">Gainage + stabilité</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Kick-backs fessiers</div><div class="ex-detail">Fessiers ciblés</div></div><div class="ex-badge">40s/c</div></div>
+    </div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🚴‍♀️</div>
+      <div style="flex:1"><div class="t-name">Séance 6 — RPM / Spinning</div><div class="t-info">Cours collectif · 45-55 min · 500-700 kcal</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body"><p class="t-text">Meilleur cours pour brûler. Cuisses + fessiers + cardio intense. Ou autre cours disponible. Respecte les 2 cours collectifs/semaine.</p></div>
+  </div>
+
+  <div class="t-card" onclick="toggleT(this)">
+    <div class="t-header">
+      <div class="t-icon">🧘‍♀️</div>
+      <div style="flex:1"><div class="t-name">Jour 7 — Récupération</div><div class="t-info">Repos actif · étirements · foam roller</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="t-body"><p class="t-text">Marche 30-45 min · yoga ou étirements · foam roller. Récupération obligatoire. Vélo ou footing léger possible.</p></div>
+  </div>
+</section>
+
+<!-- HIIT TIMER -->
+<section class="section" id="hiit">
+  <div class="section-tag">Séance 5</div>
+  <h2 class="section-title">⏱ Timer HIIT</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">40s effort · 20s repos · 8 exercices · 4 tours</p>
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:24px;padding:28px 20px;text-align:center;">
+    <div id="hiitExName" style="font-size:13px;font-weight:700;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Appuie sur Démarrer</div>
+    <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:var(--white);line-height:1;">40</div>
+    <div id="hiitPhase" style="font-size:16px;font-weight:700;margin:8px 0 20px;color:var(--rose-light);">EFFORT 🔥</div>
+    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="hiitDots"></div>
+    <div style="display:flex;justify-content:center;gap:20px;margin-bottom:24px;">
+      <div style="text-align:center;">
+        <div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/4</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/8</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;">
+      <button id="hiitBtn" onclick="hiitToggle()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:16px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;">▶ Démarrer</button>
+      <button onclick="hiitReset()" style="flex:1;padding:16px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Reset</button>
+    </div>
+  </div>
+  <div style="margin-top:20px;"><div id="hiitList"></div></div>
+</section>
+
+<!-- TRACKER -->
+<section class="section" id="tracker">
+  <div class="section-tag">Suivi personnalisé</div>
+  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🍑</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 1 — Fessiers & Cuisses</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🎵</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 2 — Body Pump</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">💪</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 3 — Dos, Bras & Taille</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🏃‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 4 — Footing</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🔥</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 5 — HIIT Circuit</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🚴‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 6 — RPM / Spinning</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🧘‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Jour 7 — Récupération</div></div>
+    </div>
+  </div>
+  <div id="seanceCount" style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:600;">0 / 6 séances cette semaine</div>
+</section>
+
+<!-- NUTRITION -->
+<section class="section" id="alim">
+  <div class="section-tag">1 750 kcal · 130g protéines</div>
+  <h2 class="section-title">Plan<br>alimentaire</h2>
+  <div id="foodDays"></div>
+</section>
+
+<!-- COMPLÉMENTS -->
+<section class="section" id="suppl">
+  <div class="section-tag">Stack compléments</div>
+  <h2 class="section-title">Compléments<br>alimentaires</h2>
+
+  <div class="sg">
+    <div class="sg-title urg">⚡ URGENT — Anémie prioritaire</div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Fer Bisglycinate</div><div class="s-time">25-30mg · à jeun · matin · Solgar Gentle Iron / Nutri&Co</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Vitamine C 500mg</div><div class="s-time">500mg · avec le fer · matin · Nutri&Co liposomale</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">B9 + B12</div><div class="s-time">400µg B9 + 1000µg B12 · matin · Nutri&Co / Solgar</div></div></div>
+  </div>
+
+  <div class="sg">
+    <div class="sg-title p1">⚡ Priorité 1</div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Whey Protéine Isolat</div><div class="s-time">25g post-séance · Eiyolab / Nutri&Co / MyProtein</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Vitamine D3 + K2</div><div class="s-time">2000 UI D3 + 100µg K2 · matin · Nutri&Co D3K2</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Magnésium Bisglycinate</div><div class="s-time">300mg · soir avant coucher · Nutri&Co</div></div></div>
+  </div>
+
+  <div class="sg">
+    <div class="sg-title p2">✦ Priorité 2 — Peau & Galbe</div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Collagène Marin + Vit C</div><div class="s-time">10g + 200mg Vit C · matin · Eiyolab / Aime Skincare</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Oméga-3 EPA/DHA</div><div class="s-time">1-2g EPA+DHA · avec repas · Nutri&Co / Solgar</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Probiotiques</div><div class="s-time">1 gélule · matin à jeun · Optibac / Pileje Lactibiane</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">CLA</div><div class="s-time">3g/j · avec repas · Solgar CLA / MyProtein</div></div></div>
+    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Zinc Bisglycinate</div><div class="s-time">15mg · soir · Nutri&Co / Solgar</div></div></div>
+  </div>
+
+  <div class="sub-h">🩸 Protocole Anémie</div>
+  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Fer bisglycinate chaque matin</div><div class="an-desc">À jeun au réveil + Vit C 500mg + eau froide. Attendre 30-45 min avant café ou petit-déj.</div></div></div>
+  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Jamais café/thé avec le fer</div><div class="an-desc">Les tanins réduisent l'absorption de 60-80%. Attendre 2h minimum.</div></div></div>
+  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Jamais laitages avec le fer</div><div class="an-desc">Le calcium inhibe l'absorption de 50-60%. Même règle : 2h minimum.</div></div></div>
+  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Combos fer végétal + Vit C</div><div class="an-desc">Épinards + citron · Lentilles + poivrons · Haricots + tomates. La Vit C triple l'absorption.</div></div></div>
+  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Prise de sang à 6 semaines</div><div class="an-desc">Vérifier ferritine (cible >50 µg/L) · hémoglobine (cible >12 g/dL) · NFS complète.</div></div></div>
+  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Durée minimum 3 mois</div><div class="an-desc">Continuer même si tu te sens mieux. 3 mois pour reconstituer les réserves de ferritine.</div></div></div>
+</section>
+
+<!-- RÈGLES -->
+<section class="section" id="regles">
+  <div class="section-tag">Règles d'or</div>
+  <h2 class="section-title">À faire &<br>À éviter</h2>
+  <div class="rh g">✅ À faire</div>
+  <div class="r-row"><div class="r-icon">⚡</div><div><div class="r-name">Fer bisglycinate chaque matin</div><div class="r-desc">À jeun au réveil. Ferritine +40% en 6 semaines.</div></div></div>
+  <div class="r-row"><div class="r-icon">👟</div><div><div class="r-name">8 000-10 000 pas/jour</div><div class="r-desc">250-350 kcal supplémentaires brûlées par jour.</div></div></div>
+  <div class="r-row"><div class="r-icon">💧</div><div><div class="r-name">2L d'eau minimum/jour</div><div class="r-desc">Métabolisme +24% avec 500ml le matin.</div></div></div>
+  <div class="r-row"><div class="r-icon">😴</div><div><div class="r-name">7-8h de sommeil</div><div class="r-desc">70% de la GH sécrétée la nuit. Nuit courte = +28% de faim le lendemain.</div></div></div>
+  <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser 1x/semaine</div><div class="r-desc">Dimanche matin à jeun. Évite l'anxiété des fluctuations.</div></div></div>
+  <div class="r-row"><div class="r-icon">🥩</div><div><div class="r-name">Protéines à chaque repas</div><div class="r-desc">130g/j. Effet thermique = 150 kcal brûlées à la digestion.</div></div></div>
+  <div class="r-row"><div class="r-icon">🏋️</div><div><div class="r-name">Musculation 2x/semaine min</div><div class="r-desc">Les muscles brûlent 24-48h après la séance.</div></div></div>
+  <div class="r-row"><div class="r-icon">🌿</div><div><div class="r-name">Foam roller après séance</div><div class="r-desc">Réduit les courbatures de 40%.</div></div></div>
+  <div class="rh r">❌ À éviter</div>
+  <div class="r-row"><div class="r-icon">☕</div><div><div class="r-name">Café/thé avec le fer</div><div class="r-desc">Absorption du fer −60-80%. Attendre 2h minimum.</div></div></div>
+  <div class="r-row"><div class="r-icon">🍌</div><div><div class="r-name">Glucides rapides le soir</div><div class="r-desc">IG élevé + pas d'activité = stockage direct en graisse abdominale.</div></div></div>
+  <div class="r-row"><div class="r-icon">📺</div><div><div class="r-name">Manger devant un écran</div><div class="r-desc">On mange en moyenne 30% de plus en regardant la télé.</div></div></div>
+  <div class="r-row"><div class="r-icon">🍷</div><div><div class="r-name">Alcool fréquent</div><div class="r-desc">Stoppe la lipolyse 24-48h, perturbe la GH et le sommeil.</div></div></div>
+  <div class="r-row"><div class="r-icon">🚫</div><div><div class="r-name">Faire uniquement du cardio</div><div class="r-desc">Sans muscu : corps mou. Perte musculaire = métabolisme bas.</div></div></div>
+  <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser tous les jours</div><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
+</section>
+
+<!-- MESURES -->
+<section class="section" id="mesures">
+  <div class="section-tag">Suivi corporel · Dimanche matin à jeun</div>
+  <h2 class="section-title">Poids &<br>Mesures</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">À faire le dimanche matin, à jeun, toujours au même endroit 📏</p>
+
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--rose-light);font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">⚖️ Poids du dimanche</div>
+    <div class="w-disp" id="wDisp">—<span> kg</span></div>
+    <div class="w-ctrls">
+      <button class="w-btn m" onclick="cw(-0.1)">−0.1</button>
+      <button class="w-btn m" onclick="cw(-1)">−1</button>
+      <button class="w-btn p" onclick="cw(1)">+1</button>
+      <button class="w-btn p" onclick="cw(0.1)">+0.1</button>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--rose-light);font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">📏 Mensurations</div>
+    <div id="mesureInputs"></div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-bottom:16px;">
+    <button onclick="saveTout()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📌 Enregistrer tout</button>
+    <button onclick="resetDerniereMesure()" style="flex:1;padding:16px;background:rgba(255,80,80,0.15);color:#FF9090;border:1px solid rgba(255,80,80,0.35);border-radius:14px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="resetMesureBtn">🗑 Annuler</button>
+  </div>
+
+  <div id="wHist"></div>
+  <div id="mesureHistory"></div>
+</section>
+
+<!-- LISTE COURSES -->
+<section class="section" id="courses">
+  <div class="section-tag">Semaine type</div>
+  <h2 class="section-title">🛒 Liste<br>de courses</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:20px;font-weight:500;">Coche ce que tu as déjà ou ce que tu achètes ✓</p>
+  <div style="display:flex;gap:10px;margin-bottom:20px;">
+    <button onclick="resetCourses()" style="flex:1;padding:12px;background:rgba(255,255,255,0.08);color:var(--light);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Tout réinitialiser</button>
+    <button onclick="checkAllCourses()" style="flex:1;padding:12px;background:rgba(255,92,138,0.15);color:var(--rose-light);border:1px solid rgba(255,92,138,0.30);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">✓ Tout cocher</button>
+  </div>
+  <div id="coursesList"></div>
+</section>
+
+<!-- MENTAL -->
+<section class="section" id="mental">
+  <div class="section-tag">Mindset</div>
+  <h2 class="section-title">Mental &<br>Motivation</h2>
+  <div class="q-card"><div class="q-text">Chaque séance me rapproche de la version de moi que je veux être.</div><div class="q-ctx">À se dire avant chaque entraînement</div></div>
+  <div class="q-card"><div class="q-text">Je mange pour nourrir mon corps, pas pour punir mon âme.</div><div class="q-ctx">Face à la culpabilité alimentaire</div></div>
+  <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
+  <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
+  <div class="sub-h">Les 7 clés mentales</div>
+  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
+  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
+  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
+  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
+  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
+  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
+  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="cd-block">
+    <div class="cd-item"><div class="cd-val" id="cdD">—</div><div class="cd-unit">jours</div></div>
+    <div class="cd-item"><div class="cd-val" id="cdH">—</div><div class="cd-unit">heures</div></div>
+    <div class="cd-item"><div class="cd-val" id="cdM">—</div><div class="cd-unit">minutes</div></div>
+  </div>
+  <div class="footer-title">Tu es capable de tout, Sarah. ✈</div>
+  <div class="footer-sub">12 semaines. <span id="footerDays">92</span> jours. 504 heures de choix quotidiens qui vont redéfinir ta relation avec ton corps, ton énergie et ta confiance.</div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="font-size:12px;color:var(--rose-light);font-weight:700;margin-bottom:8px;">© 2026 — Programme Sarah Slimani</div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.7;">Ce programme (plan alimentaire, entraînements, compléments, suivi) a été créé et conçu par <strong style="color:var(--light);">Yanis Bensaadi</strong> — Toute reproduction, copie, distribution ou utilisation commerciale de ce contenu, même partielle, sans autorisation écrite préalable est strictement interdite. Ce programme est destiné à un usage personnel et non commercial. Contenu protégé — Tous droits réservés.</div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);">📩 Contact : <span style="color:var(--rose-light);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="354c545b5c46571b5940755258545c591b565a58">[email&#160;protected]</a></span></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// FOOD DATA
+const fd = [
+  {day:"Jour 1",kcal:1672,prot:132,gluc:162,meals:[
+    {l:"Petit-déjeuner",n:"Bowl protéiné fraises",i:"150g fromage blanc 0% · 30g flocons avoine · fraises · graines de chia"},
+    {l:"Déjeuner",n:"Poulet quinoa légumes rôtis",i:"150g poulet · 80g quinoa · courgette + poivrons · huile d'olive"},
+    {l:"Collation",n:"Yaourt grec & amandes",i:"150g yaourt grec 0% · 20g amandes · 1 pomme"},
+    {l:"Dîner",n:"Saumon épinards patate douce",i:"150g saumon · épinards · 120g patate douce · citron · huile olive"},
+    {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey isolat · 200ml eau"}
+  ]},
+  {day:"Jour 2",kcal:1650,prot:130,gluc:158,meals:[
+    {l:"Petit-déjeuner",n:"Bowl protéiné fraises",i:"150g fromage blanc 0% · 30g flocons avoine · fraises · chia"},
+    {l:"Déjeuner",n:"Salade niçoise légère",i:"1 boîte thon · haricots verts · 1 œuf dur · tomates · olives"},
+    {l:"Collation",n:"Smoothie protéiné banane",i:"1 banane · 150ml lait végétal · 20g whey · beurre d'amande"},
+    {l:"Dîner",n:"Lentilles beluga épinards feta",i:"160g lentilles · épinards · 30g feta · tomates séchées · huile olive"},
+    {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey · 200ml lait végétal"}
+  ]},
+  {day:"Jour 3",kcal:1635,prot:128,gluc:162,meals:[
+    {l:"Petit-déjeuner",n:"Porridge avoine protéiné",i:"60g flocons avoine · 1 scoop whey vanille · fruits rouges · lait végétal"},
+    {l:"Déjeuner",n:"Wraps poulet avocat",i:"2 wraps complets · 120g poulet · ½ avocat · salade · tomates"},
+    {l:"Collation",n:"Fromage blanc myrtilles",i:"150g fromage blanc 0% · 80g myrtilles · noix · chia"},
+    {l:"Dîner",n:"Cabillaud légumes verts quinoa",i:"180g cabillaud · haricots verts · brocoli · 80g quinoa · citron"}
+  ]},
+  {day:"Jour 4",kcal:1700,prot:135,gluc:165,meals:[
+    {l:"Petit-déjeuner",n:"Pancakes protéinés banane",i:"2 œufs · 40g flocons avoine · 1 banane · beurre d'amande · cannelle"},
+    {l:"Déjeuner",n:"Soupe lentilles carottes curcuma",i:"150g lentilles corail · carottes · oignons · curcuma · pain complet"},
+    {l:"Collation",n:"Banane yaourt grec miel",i:"1 banane · 150g yaourt grec 0% · 20g amandes · miel"},
+    {l:"Dîner",n:"Poulet rôti salade fenouil",i:"150g poulet rôti · fenouil · betterave · noix · vinaigrette balsamique"},
+    {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey · 200ml eau"}
+  ]},
+  {day:"Jour 5",kcal:1635,prot:132,gluc:155,meals:[
+    {l:"Petit-déjeuner",n:"Smoothie bowl verde",i:"Épinards · 1 banane · lait végétal · 20g whey · kiwi · graines de courge"},
+    {l:"Déjeuner",n:"Riz crevettes légumes sautés",i:"100g riz · 150g crevettes · poivrons + courgettes · sauce soja · sésame"},
+    {l:"Collation",n:"Pomme beurre d'amande",i:"1 pomme · 1cs beurre d'amande · 10g amandes"},
+    {l:"Dîner",n:"Bœuf haché courgettes gratiné",i:"120g bœuf haché 5% · courgettes · tomates · 30g mozzarella allégée"}
+  ]},
+  {day:"Jour 6",kcal:1568,prot:125,gluc:152,meals:[
+    {l:"Petit-déjeuner",n:"Avocado toast œufs pochés",i:"2 tranches pain complet · ½ avocat · 2 œufs pochés · tomates cerises"},
+    {l:"Déjeuner",n:"Buddha bowl végétarien",i:"Quinoa · pois chiches rôtis · betterave · avocat · épinards · tahini"},
+    {l:"Collation",n:"Fruits rouges yaourt",i:"150g yaourt grec · 100g fruits rouges · 10g amandes"},
+    {l:"Dîner",n:"Saumon teriyaki riz jasmin",i:"160g saumon · 100g riz jasmin · edamame · sauce teriyaki · sésame"}
+  ]},
+  {day:"Jour 7 — Repos",kcal:1498,prot:118,gluc:145,meals:[
+    {l:"Petit-déjeuner",n:"Œufs brouillés champignons",i:"3 œufs · champignons · 1 tranche pain complet · tomates · herbes"},
+    {l:"Déjeuner",n:"Soupe détox légumes verts",i:"Poireaux · courgettes · épinards · gingembre · citron · pain complet"},
+    {l:"Collation",n:"Fromage blanc fruits noix",i:"200g fromage blanc 0% · fruits de saison · 15g noix"},
+    {l:"Dîner",n:"Lentilles épinards feta",i:"160g lentilles · épinards · 30g feta · tomates séchées · huile olive"}
+  ]}
+];
+
+document.getElementById('foodDays').innerHTML = fd.map(d=>`
+  <div class="f-card">
+    <div class="f-header" onclick="this.parentElement.classList.toggle('open')">
+      <div>
+        <div class="f-title">${d.day}</div>
+        <div class="f-macros">
+          <span class="m-chip">Prot <span>${d.prot}g</span></span>
+          <span class="m-chip">Gluc <span>${d.gluc}g</span></span>
+          <span class="m-chip">${d.kcal} kcal</span>
+        </div>
+      </div>
+      <span style="color:var(--rose-light);font-size:18px;margin-top:4px;">▼</span>
+    </div>
+    <div class="f-body">
+      ${d.meals.map(m=>`
+        <div class="meal">
+          <div class="meal-lbl">${m.l}</div>
+          <div class="meal-name">${m.n}</div>
+          <div class="meal-ing">${m.i}</div>
+        </div>`).join('')}
+    </div>
+  </div>`).join('');
+
+function toggleT(el){el.classList.toggle('open')}
+function chk(el){el.classList.toggle('on');el.textContent=el.classList.contains('on')?'✓':'';}
+
+// Weight
+let W = parseFloat(localStorage.getItem('sw')||'0');
+let H = JSON.parse(localStorage.getItem('sh')||'[]');
+function updW(){document.getElementById('wDisp').innerHTML=W>0?`${W.toFixed(1)}<span> kg</span>`:`—<span> kg</span>`;}
+function cw(d){if(!W)W=75;W=Math.round((W+d)*10)/10;W=Math.max(30,Math.min(200,W));updW();localStorage.setItem('sw',W);}
+function saveW(){
+  if(!W)return;
+  H.unshift({date:new Date().toLocaleDateString('fr-FR'),val:W});
+  if(H.length>10)H.pop();
+  localStorage.setItem('sh',JSON.stringify(H));
+  rendH();
+  const b=document.querySelector('.save-btn');b.textContent='✅ Enregistré !';
+  setTimeout(()=>b.textContent='📌 Enregistrer le poids',2000);
+}
+function rendH(){
+  const c=document.getElementById('wHist');
+  if(!H.length){c.innerHTML='';return;}
+  c.innerHTML=`<div class="h-lbl">Historique</div>`+H.map((e,i)=>{
+    const prev=H[i+1];
+    const diff=prev?`<span class="h-diff ${e.val-prev.val<0?'neg':'pos'}">${e.val-prev.val>0?'+':''}${(e.val-prev.val).toFixed(1)} kg</span>`:'';
+    return`<div class="h-row"><span class="h-date">${e.date}</span><span class="h-val">${e.val.toFixed(1)} kg</span>${diff}</div>`;
+  }).join('');
+}
+
+// Countdown
+function updCd(){
+  const diff=new Date('2026-06-20')-new Date();
+  if(diff<=0){['cdD','cdH','cdM'].forEach(id=>document.getElementById(id).textContent='0');return;}
+  document.getElementById('cdD').textContent=Math.floor(diff/86400000);
+  document.getElementById('heroDays').textContent=Math.floor(diff/86400000)+' jours';
+  document.getElementById('heroSub').textContent=Math.floor(diff/86400000);
+  document.getElementById('footerDays').textContent=Math.floor(diff/86400000);
+  document.getElementById('cdH').textContent=Math.floor((diff%86400000)/3600000);
+  document.getElementById('cdM').textContent=Math.floor((diff%3600000)/60000);
+}
+
+// Progress
+function updPb(){
+  const pct=Math.min(100,Math.max(0,Math.round(((new Date()-new Date('2026-03-19'))/(new Date('2026-06-11')-new Date('2026-03-19')))*100)));
+  document.getElementById('pbPct').textContent=pct+'%';
+  setTimeout(()=>document.getElementById('pbFill').style.width=pct+'%',300);
+}
+
+// Nav
+function navTo(id,btn){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleSeance(el){
+  el.classList.toggle('seance-done');
+  const done = document.querySelectorAll('.seance-done').length;
+  const txt = done >= 6 ? `${done} / 6 séances ✅ Objectif atteint !` : `${done} / 6 séances cette semaine`;
+  document.getElementById('seanceCount').textContent = txt;
+  document.getElementById('seanceCount').style.color = done >= 6 ? 'var(--rose-light)' : 'var(--muted)';
+}
+
+function saveTout(){
+  // Save weight
+  if(W>0){
+    H.unshift({date:new Date().toLocaleDateString('fr-FR'),val:W});
+    if(H.length>12)H.pop();
+    localStorage.setItem('sh',JSON.stringify(H));
+    rendH();
+  }
+  // Save mesures
+  saveMesures();
+}
+
+// ── LISTE COURSES
+const coursesData = [
+  {cat:'🥩 Protéines', items:[
+    'Filets de poulet — 800g','Saumon sauvage — 600g (4 pavés)','Cabillaud — 400g (2 filets)',
+    'Bœuf haché 5% MG — 300g','Crevettes — 300g','Thon en boîte — 3 boîtes (140g)',
+    'Œufs — 1 boîte de 12','Fromage blanc 0% — 3×500g','Yaourt grec 0% — 6 pots (150g)',
+    'Feta — 100g','Mozzarella allégée — 125g'
+  ]},
+  {cat:'🥦 Légumes', items:[
+    'Épinards frais — 500g','Courgettes — 4 (≈800g)','Poivrons rouges/jaunes — 4',
+    'Brocoli — 1 tête (400g)','Haricots verts — 400g','Betterave cuite — 2',
+    'Fenouil — 1','Champignons — 250g','Poireaux — 2','Tomates cerises — 250g',
+    'Tomates — 4','Edamame surgelé — 200g'
+  ]},
+  {cat:'🍠 Féculents & Légumineuses', items:[
+    'Patate douce — 3 (≈600g)','Quinoa — 400g','Riz basmati/jasmin — 400g',
+    'Lentilles vertes — 400g','Lentilles corail — 200g','Lentilles beluga — 200g',
+    'Pois chiches en boîte — 2×400g','Haricots rouges en boîte — 1×400g',
+    'Flocons d\'avoine — 500g','Pain complet — 1 paquet tranches','Wraps complets — 6'
+  ]},
+  {cat:'🍎 Fruits', items:[
+    'Bananes — 6','Fraises — 250g','Myrtilles — 250g',
+    'Fruits rouges mélange — 200g','Kiwis — 4','Pommes — 6','Citrons — 4'
+  ]},
+  {cat:'🥑 Graisses & Oléagineux', items:[
+    'Avocats — 4','Amandes — 200g','Noix — 150g',
+    'Beurre d\'amande — 1 pot (200g)','Huile d\'olive — 1 bouteille',
+    'Graines de chia — 150g','Graines de courge — 100g','Tahini — 1 pot'
+  ]},
+  {cat:'🥛 Laitiers & Boissons', items:[
+    'Lait végétal (amande/avoine) — 2×1L','Miel — 1 petit pot'
+  ]},
+  {cat:'🧴 Condiments & Épices', items:[
+    'Sauce soja — 1 bouteille','Sauce teriyaki — 1 bouteille',
+    'Vinaigre balsamique — 1 bouteille','Curcuma — 1 sachet',
+    'Gingembre frais — 1 morceau','Cannelle — 1 sachet',
+    'Sésame — 50g','Tomates séchées — 100g','Edamame — 200g'
+  ]},
+  {cat:'💊 Compléments', items:[
+    'Fer Bisglycinate — 25-30mg/j','Vitamine C 500mg — avec le fer',
+    'B9 400µg + B12 1000µg','Whey Isolat — 25g/post-séance',
+    'Vitamine D3 2000UI + K2 100µg','Magnésium Bisglycinate 300mg',
+    'Collagène Marin 10g','Oméga-3 EPA/DHA 1-2g','Probiotiques 1 gélule',
+    'CLA 3g/j','Zinc Bisglycinate 15mg'
+  ]}
+];
+
+let coursesState = JSON.parse(localStorage.getItem('courses_state')||'{}');
+
+function renderCourses(){
+  const c = document.getElementById('coursesList');
+  c.innerHTML = coursesData.map((cat, ci)=>`
+    <div style="margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:800;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">${cat.cat}</div>
+      ${cat.items.map((item,ii)=>{
+        const key=`${ci}-${ii}`;
+        const done = coursesState[key];
+        return `<div onclick="toggleCourse('${key}',this)" style="display:flex;align-items:center;gap:12px;padding:10px 14px;margin-bottom:6px;background:${done?'rgba(255,92,138,0.12)':'rgba(255,255,255,0.05)'};border:1px solid ${done?'rgba(255,92,138,0.35)':'rgba(255,255,255,0.08)'};border-radius:12px;cursor:pointer;transition:all 0.2s;" data-key="${key}">
+          <div style="width:22px;height:22px;border-radius:7px;border:2px solid ${done?'var(--rose)':'rgba(255,255,255,0.25)'};background:${done?'var(--rose)':'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:white;">${done?'✓':''}</div>
+          <span style="font-size:14px;font-weight:${done?'600':'500'};color:${done?'var(--muted)':'var(--white)'};text-decoration:${done?'line-through':'none'};">${item}</span>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+function toggleCourse(key, el){
+  coursesState[key] = !coursesState[key];
+  localStorage.setItem('courses_state', JSON.stringify(coursesState));
+  renderCourses();
+}
+
+function resetCourses(){
+  if(confirm('Réinitialiser toute la liste ?')){ coursesState={}; localStorage.setItem('courses_state','{}'); renderCourses(); }
+}
+
+function checkAllCourses(){
+  coursesData.forEach((cat,ci)=>cat.items.forEach((_,ii)=>coursesState[`${ci}-${ii}`]=true));
+  localStorage.setItem('courses_state',JSON.stringify(coursesState));
+  renderCourses();
+}
+
+renderCourses();
+
+updW(); rendH(); updCd(); updPb();
+setInterval(updCd,30000);
+
+// ── PROTECTION
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if((e.ctrlKey||e.metaKey) && ['u','s','a'].includes(e.key.toLowerCase())) e.preventDefault();
+  if(e.key==='F12') e.preventDefault();
+});
+
+// ══ HIIT TIMER ══
+const hiitExercises = [
+  'Burpees','Jump squats','Mountain climbers',
+  'Fentes sautées','Pompes adaptées','High knees',
+  'Plank shoulder tap','Kick-backs fessiers'
+];
+let hiitRunning=false, hiitInterval=null;
+let hiitSec=40, hiitIsWork=true, hiitExIdx=0, hiitTourNum=1, hiitTotalEx=0;
+const WORK=40, REST=20, REST_BETWEEN=120, TOURS=4, EX=8;
+
+function hiitRenderList(){
+  document.getElementById('hiitList').innerHTML = hiitExercises.map((e,i)=>`
+    <div class="hiit-ex-row" id="hiitRow${i}">
+      <div class="hiit-ex-num">${i+1}</div>
+      <div class="hiit-ex-name">${e}</div>
+      <div class="hiit-ex-time">40s / 20s</div>
+    </div>`).join('');
+}
+
+function hiitRenderDots(){
+  const total = TOURS * EX;
+  document.getElementById('hiitDots').innerHTML = Array.from({length:total},(_,i)=>`
+    <div class="hiit-dot-item ${i<hiitTotalEx?'done':i===hiitTotalEx?'current':''}" id="dot${i}"></div>`).join('');
+}
+
+function hiitUpdateUI(){
+  const timeEl = document.getElementById('hiitTime');
+  const phaseEl = document.getElementById('hiitPhase');
+  const exNameEl = document.getElementById('hiitExName');
+  timeEl.textContent = hiitSec;
+  if(hiitIsWork){
+    timeEl.style.color = '#FFFFFF';
+    phaseEl.textContent = 'EFFORT 🔥';
+    phaseEl.style.color = 'var(--rose-light)';
+    exNameEl.textContent = hiitExercises[hiitExIdx];
+  } else {
+    timeEl.style.color = 'var(--gold)';
+    phaseEl.textContent = hiitExIdx === EX-1 && hiitTourNum < TOURS ? `REPOS ENTRE TOURS ⏸ (${hiitSec}s)` : 'REPOS 😮‍💨';
+    phaseEl.style.color = 'var(--gold)';
+    const next = hiitExIdx === EX-1 ? 0 : hiitExIdx+1;
+    exNameEl.textContent = `Prochain : ${hiitExercises[next]}`;
+  }
+  document.getElementById('hiitTour').textContent = `${hiitTourNum}/${TOURS}`;
+  document.getElementById('hiitEx').textContent = `${hiitExIdx+1}/${EX}`;
+  // highlight active row
+  hiitExercises.forEach((_,i)=>document.getElementById('hiitRow'+i)?.classList.remove('active-ex'));
+  document.getElementById('hiitRow'+hiitExIdx)?.classList.add('active-ex');
+  hiitRenderDots();
+}
+
+function hiitTick(){
+  hiitSec--;
+  if(hiitSec < 0){
+    if(hiitIsWork){
+      // switch to rest
+      hiitIsWork = false;
+      hiitSec = (hiitExIdx === EX-1 && hiitTourNum < TOURS) ? REST_BETWEEN : REST;
+    } else {
+      // next exercise
+      hiitExIdx++;
+      if(hiitExIdx >= EX){
+        hiitExIdx = 0;
+        hiitTourNum++;
+        if(hiitTourNum > TOURS){
+          hiitFinish(); return;
+        }
+      }
+      hiitTotalEx++;
+      hiitIsWork = true;
+      hiitSec = WORK;
+    }
+  }
+  hiitUpdateUI();
+  // vibrate on phase change
+  if(hiitSec === 0 && navigator.vibrate) navigator.vibrate(200);
+}
+
+function hiitToggle(){
+  if(!hiitRunning){
+    hiitRunning = true;
+    document.getElementById('hiitBtn').textContent = '⏸ Pause';
+    hiitInterval = setInterval(hiitTick, 1000);
+  } else {
+    hiitRunning = false;
+    document.getElementById('hiitBtn').textContent = '▶ Reprendre';
+    clearInterval(hiitInterval);
+  }
+}
+
+function hiitReset(){
+  clearInterval(hiitInterval);
+  hiitRunning=false; hiitSec=WORK; hiitIsWork=true;
+  hiitExIdx=0; hiitTourNum=1; hiitTotalEx=0;
+  document.getElementById('hiitBtn').textContent='▶ Démarrer';
+  document.getElementById('hiitTime').style.color='var(--white)';
+  hiitUpdateUI();
+}
+
+function hiitFinish(){
+  clearInterval(hiitInterval);
+  hiitRunning=false;
+  document.getElementById('hiitExName').textContent='🎉 SÉANCE TERMINÉE !';
+  document.getElementById('hiitTime').textContent='✓';
+  document.getElementById('hiitTime').style.color='var(--gold)';
+  document.getElementById('hiitPhase').textContent='Incroyable Sarah ! 💪';
+  document.getElementById('hiitBtn').textContent='↺ Recommencer';
+  if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
+}
+
+hiitRenderList(); hiitUpdateUI();
+
+// ══ MESURES ══
+const mesFields = [
+  {key:'bras', label:'Tour de bras', unit:'cm'},
+  {key:'cuisse', label:'Haut de cuisse', unit:'cm'},
+  {key:'hanches', label:'Hanches', unit:'cm'},
+  {key:'poitrine', label:'Poitrine', unit:'cm'},
+  {key:'ventre', label:'Ventre (5cm ↑ nombril)', unit:'cm'},
+];
+let mesHist = JSON.parse(localStorage.getItem('mes_hist')||'[]');
+
+function mesRenderInputs(){
+  document.getElementById('mesureInputs').innerHTML = mesFields.map(f=>`
+    <div class="mes-input-row">
+      <div class="mes-label">${f.label}</div>
+      <input class="mes-input" type="number" id="mes_${f.key}" placeholder="—" step="0.1">
+      <div class="mes-unit">${f.unit}</div>
+    </div>`).join('');
+}
+
+function saveMesures(){
+  const entry = { date: new Date().toLocaleDateString('fr-FR'), vals:{} };
+  let hasVal = false;
+  mesFields.forEach(f=>{
+    const v = parseFloat(document.getElementById('mes_'+f.key).value);
+    if(!isNaN(v)){ entry.vals[f.key]=v; hasVal=true; }
+  });
+  if(!hasVal){ alert('Entre au moins une mesure !'); return; }
+  mesHist.unshift(entry);
+  if(mesHist.length>12) mesHist.pop();
+  localStorage.setItem('mes_hist', JSON.stringify(mesHist));
+  mesRenderHistory();
+  // clear inputs
+  mesFields.forEach(f=>document.getElementById('mes_'+f.key).value='');
+  const b=document.getElementById('mesureBtn');
+  b.textContent='✅ Mesures enregistrées !';
+  setTimeout(()=>b.textContent='📏 Enregistrer les mesures',2000);
+}
+
+function mesRenderHistory(){
+  const c = document.getElementById('mesureHistory');
+  if(!mesHist.length){ c.innerHTML=''; return; }
+  c.innerHTML = `<div class="sub-h" style="margin-top:0;margin-bottom:14px;">Historique</div>` +
+  mesHist.map((entry, i)=>{
+    const prev = mesHist[i+1];
+    const rows = mesFields.filter(f=>entry.vals[f.key]!==undefined).map(f=>{
+      const val = entry.vals[f.key];
+      let diffHtml = '';
+      if(prev && prev.vals[f.key]!==undefined){
+        const d = val - prev.vals[f.key];
+        const cls = d<0?'neg':'pos';
+        diffHtml = `<span class="mes-hist-diff ${cls}">${d>0?'+':''}${d.toFixed(1)}</span>`;
+      }
+      return `<div class="mes-hist-row">
+        <span class="mes-hist-name">${f.label}</span>
+        <span class="mes-hist-val">${val} ${f.unit}${diffHtml}</span>
+      </div>`;
+    }).join('');
+    return `<div class="mes-hist-card"><div class="mes-hist-date">📅 ${entry.date}</div>${rows}</div>`;
+  }).join('');
+}
+
+function resetDerniereMesure(){
+  if(!mesHist.length){ alert('Aucune mesure à supprimer.'); return; }
+  if(confirm(`Supprimer la dernière entrée du ${mesHist[0].date} ?`)){
+    mesHist.shift();
+    localStorage.setItem('mes_hist', JSON.stringify(mesHist));
+    mesRenderHist

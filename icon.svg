@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" rx="60" fill="#2D1045"/>
+  <rect width="300" height="300" rx="60" fill="#E8547A" opacity="0.15"/>
+  <circle cx="150" cy="150" r="110" fill="#FF5C8A" opacity="0.12"/>
+  <circle cx="150" cy="150" r="80" fill="#FF5C8A" opacity="0.10"/>
+  <!-- Tête -->
+  <ellipse cx="150" cy="105" rx="22" ry="22" fill="#FF5C8A"/>
+  <!-- Bras gauche levé -->
+  <path d="M128 118 Q105 90 110 70" stroke="#FF5C8A" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Bras droit levé -->
+  <path d="M172 118 Q195 90 190 70" stroke="#FF5C8A" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Torse -->
+  <path d="M128 127 Q150 145 172 127 L165 190 Q150 200 135 190 Z" fill="#FF5C8A"/>
+  <!-- Jambe gauche -->
+  <path d="M140 190 Q130 220 125 245" stroke="#FF5C8A" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Jambe droite -->
+  <path d="M160 190 Q170 220 175 245" stroke="#FF5C8A" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Étoile dorée -->
+  <polygon points="150,30 155,43 169,43 158,51 162,64 150,56 138,64 142,51 131,43 145,43" fill="#F0C060"/>
+  <!-- Texte -->
+  <text x="150" y="272" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#FF8FAD" text-anchor="middle" letter-spacing="4">SARAH</text>
+  <text x="150" y="291" font-family="Georgia, serif" font-size="10" fill="#C090E0" text-anchor="middle" letter-spacing="2">TRANSFORMATION</text>
+  <!-- Petites étoiles -->
+  <circle cx="60" cy="60" r="3" fill="#F0C060" opacity="0.7"/>
+  <circle cx="240" cy="75" r="2" fill="#FF5C8A" opacity="0.6"/>
+  <circle cx="230" cy="220" r="3" fill="#F0C060" opacity="0.5"/>
+  <circle cx="70" cy="210" r="2" fill="#FF8FAD" opacity="0.6"/>
+</svg>
