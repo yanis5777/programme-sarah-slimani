@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Sarah — Transformation</title>
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sarah 💪">
@@ -1208,4 +1208,14 @@ function resetDerniereMesure(){
   if(confirm(`Supprimer la dernière entrée du ${mesHist[0].date} ?`)){
     mesHist.shift();
     localStorage.setItem('mes_hist', JSON.stringify(mesHist));
-    mesRenderHist
+    mesRenderHistory();
+    const b=document.getElementById('resetMesureBtn');
+    b.textContent='✅ Supprimé !';
+    setTimeout(()=>b.textContent='🗑 Annuler',2000);
+  }
+}
+
+mesRenderInputs(); mesRenderHistory();
+</script>
+</body>
+</html>
