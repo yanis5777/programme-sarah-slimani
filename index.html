@@ -368,6 +368,52 @@
 
   /* ══ SUBHEADING ══ */
   .sub-h { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--white); margin:28px 0 16px; }
+
+  /* HIIT */
+  .hiit-ex-row {
+    display:flex; align-items:center; gap:12px; padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .hiit-ex-num {
+    width:28px; height:28px; border-radius:8px;
+    background:rgba(255,92,138,0.15); border:1px solid rgba(255,92,138,0.30);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800; color:var(--rose-light); flex-shrink:0;
+  }
+  .hiit-ex-name { font-size:14px; font-weight:600; color:var(--white); flex:1; }
+  .hiit-ex-time { font-size:12px; color:var(--muted); font-weight:600; }
+  .hiit-ex-row.active-ex .hiit-ex-num { background:var(--rose); border-color:var(--rose); color:white; }
+  .hiit-ex-row.active-ex .hiit-ex-name { color:var(--rose-light); }
+  .hiit-dot-item {
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(255,255,255,0.15); transition:background 0.2s;
+  }
+  .hiit-dot-item.done { background:var(--rose); }
+  .hiit-dot-item.current { background:var(--gold); }
+
+  /* MESURES */
+  .mes-input-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .mes-label { font-size:13px; color:var(--light); font-weight:600; flex:1; }
+  .mes-input {
+    width:90px; padding:10px 12px;
+    background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20);
+    border-radius:12px; color:var(--white); font-size:15px; font-weight:700;
+    font-family:'DM Sans',sans-serif; text-align:center;
+  }
+  .mes-input:focus { outline:none; border-color:var(--rose); }
+  .mes-unit { font-size:12px; color:var(--muted); font-weight:600; width:25px; }
+  .mes-hist-card {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10);
+    border-radius:16px; padding:16px 18px; margin-bottom:10px;
+  }
+  .mes-hist-date { font-size:12px; color:var(--rose-light); font-weight:700; margin-bottom:10px; }
+  .mes-hist-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .mes-hist-row:last-child { border-bottom:none; }
+  .mes-hist-name { font-size:13px; color:var(--light); }
+  .mes-hist-val { font-size:13px; font-weight:700; color:var(--white); }
+  .mes-hist-diff { font-size:11px; font-weight:700; margin-left:8px; }
+  .mes-hist-diff.neg { color:#70F0A0; }
+  .mes-hist-diff.pos { color:#FF9090; }
 </style>
 </head>
 <body>
@@ -393,9 +439,11 @@
 <nav class="sticky-nav">
   <button class="nav-btn active" onclick="navTo('mois',this)">Phases</button>
   <button class="nav-btn" onclick="navTo('training',this)">Training</button>
+  <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
   <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
   <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
+  <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
   <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
 </nav>
@@ -639,6 +687,71 @@
   <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser tous les jours</div><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
 </section>
 
+<!-- HIIT TIMER -->
+<section class="section" id="hiit">
+  <div class="section-tag">Séance 5</div>
+  <h2 class="section-title">⏱ Timer HIIT</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">40s effort · 20s repos · 8 exercices · 4 tours</p>
+
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:24px;padding:28px 20px;text-align:center;">
+
+    <!-- Exercise name -->
+    <div id="hiitExName" style="font-size:13px;font-weight:700;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Appuie sur Démarrer</div>
+
+    <!-- Big timer -->
+    <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:var(--white);line-height:1;">40</div>
+
+    <!-- Phase label -->
+    <div id="hiitPhase" style="font-size:16px;font-weight:700;margin:8px 0 20px;color:var(--rose-light);">EFFORT 🔥</div>
+
+    <!-- Progress ring -->
+    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="hiitDots"></div>
+
+    <!-- Tour + exercice counter -->
+    <div style="display:flex;justify-content:center;gap:20px;margin-bottom:24px;">
+      <div style="text-align:center;">
+        <div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/4</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="text-align:center;">
+        <div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/8</div>
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div style="display:flex;gap:12px;">
+      <button id="hiitBtn" onclick="hiitToggle()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:16px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.15s;">▶ Démarrer</button>
+      <button onclick="hiitReset()" style="flex:1;padding:16px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Exercise list -->
+  <div style="margin-top:20px;">
+    <div id="hiitList"></div>
+  </div>
+</section>
+
+<!-- MESURES -->
+<section class="section" id="mesures">
+  <div class="section-tag">Suivi corporel</div>
+  <h2 class="section-title">Mesures<br>hebdomadaires</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">À prendre le dimanche matin, à jeun, toujours au même endroit 📏</p>
+
+  <!-- Input semaine -->
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--light);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Saisir les mesures de cette semaine</div>
+
+    <div id="mesureInputs"></div>
+
+    <button onclick="saveMesures()" style="width:100%;margin-top:16px;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📏 Enregistrer les mesures</button>
+  </div>
+
+  <!-- Historique mesures -->
+  <div id="mesureHistory"></div>
+</section>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="cd-block">
@@ -647,7 +760,7 @@
     <div class="cd-item"><div class="cd-val" id="cdM">—</div><div class="cd-unit">minutes</div></div>
   </div>
   <div class="footer-title">Tu es capable de tout, Sarah. ✈</div>
-  <div class="footer-sub">12 semaines. 84 jours. 504 heures de choix quotidiens qui vont redéfinir ta relation avec ton corps, ton énergie et ta confiance.</div>
+  <div class="footer-sub">12 semaines. <span id="footerDays">92</span> jours. 504 heures de choix quotidiens qui vont redéfinir ta relation avec ton corps, ton énergie et ta confiance.</div>
 </div>
 
 <script>
@@ -756,6 +869,7 @@ function updCd(){
   if(diff<=0){['cdD','cdH','cdM'].forEach(id=>document.getElementById(id).textContent='0');return;}
   document.getElementById('cdD').textContent=Math.floor(diff/86400000);
   document.getElementById('heroDays').textContent=Math.floor(diff/86400000)+' jours';
+  document.getElementById('footerDays').textContent=Math.floor(diff/86400000);
   document.getElementById('cdH').textContent=Math.floor((diff%86400000)/3600000);
   document.getElementById('cdM').textContent=Math.floor((diff%3600000)/60000);
 }
@@ -776,6 +890,180 @@ function navTo(id,btn){
 
 updW(); rendH(); updCd(); updPb();
 setInterval(updCd,30000);
+
+// ══ HIIT TIMER ══
+const hiitExercises = [
+  'Burpees','Jump squats','Mountain climbers',
+  'Fentes sautées','Pompes adaptées','High knees',
+  'Plank shoulder tap','Kick-backs fessiers'
+];
+let hiitRunning=false, hiitInterval=null;
+let hiitSec=40, hiitIsWork=true, hiitExIdx=0, hiitTourNum=1, hiitTotalEx=0;
+const WORK=40, REST=20, REST_BETWEEN=120, TOURS=4, EX=8;
+
+function hiitRenderList(){
+  document.getElementById('hiitList').innerHTML = hiitExercises.map((e,i)=>`
+    <div class="hiit-ex-row" id="hiitRow${i}">
+      <div class="hiit-ex-num">${i+1}</div>
+      <div class="hiit-ex-name">${e}</div>
+      <div class="hiit-ex-time">40s / 20s</div>
+    </div>`).join('');
+}
+
+function hiitRenderDots(){
+  const total = TOURS * EX;
+  document.getElementById('hiitDots').innerHTML = Array.from({length:total},(_,i)=>`
+    <div class="hiit-dot-item ${i<hiitTotalEx?'done':i===hiitTotalEx?'current':''}" id="dot${i}"></div>`).join('');
+}
+
+function hiitUpdateUI(){
+  const timeEl = document.getElementById('hiitTime');
+  const phaseEl = document.getElementById('hiitPhase');
+  const exNameEl = document.getElementById('hiitExName');
+  timeEl.textContent = hiitSec;
+  if(hiitIsWork){
+    timeEl.style.color = '#FFFFFF';
+    phaseEl.textContent = 'EFFORT 🔥';
+    phaseEl.style.color = 'var(--rose-light)';
+    exNameEl.textContent = hiitExercises[hiitExIdx];
+  } else {
+    timeEl.style.color = 'var(--gold)';
+    phaseEl.textContent = hiitExIdx === EX-1 && hiitTourNum < TOURS ? `REPOS ENTRE TOURS ⏸ (${hiitSec}s)` : 'REPOS 😮‍💨';
+    phaseEl.style.color = 'var(--gold)';
+    const next = hiitExIdx === EX-1 ? 0 : hiitExIdx+1;
+    exNameEl.textContent = `Prochain : ${hiitExercises[next]}`;
+  }
+  document.getElementById('hiitTour').textContent = `${hiitTourNum}/${TOURS}`;
+  document.getElementById('hiitEx').textContent = `${hiitExIdx+1}/${EX}`;
+  // highlight active row
+  hiitExercises.forEach((_,i)=>document.getElementById('hiitRow'+i)?.classList.remove('active-ex'));
+  document.getElementById('hiitRow'+hiitExIdx)?.classList.add('active-ex');
+  hiitRenderDots();
+}
+
+function hiitTick(){
+  hiitSec--;
+  if(hiitSec < 0){
+    if(hiitIsWork){
+      // switch to rest
+      hiitIsWork = false;
+      hiitSec = (hiitExIdx === EX-1 && hiitTourNum < TOURS) ? REST_BETWEEN : REST;
+    } else {
+      // next exercise
+      hiitExIdx++;
+      if(hiitExIdx >= EX){
+        hiitExIdx = 0;
+        hiitTourNum++;
+        if(hiitTourNum > TOURS){
+          hiitFinish(); return;
+        }
+      }
+      hiitTotalEx++;
+      hiitIsWork = true;
+      hiitSec = WORK;
+    }
+  }
+  hiitUpdateUI();
+  // vibrate on phase change
+  if(hiitSec === 0 && navigator.vibrate) navigator.vibrate(200);
+}
+
+function hiitToggle(){
+  if(!hiitRunning){
+    hiitRunning = true;
+    document.getElementById('hiitBtn').textContent = '⏸ Pause';
+    hiitInterval = setInterval(hiitTick, 1000);
+  } else {
+    hiitRunning = false;
+    document.getElementById('hiitBtn').textContent = '▶ Reprendre';
+    clearInterval(hiitInterval);
+  }
+}
+
+function hiitReset(){
+  clearInterval(hiitInterval);
+  hiitRunning=false; hiitSec=WORK; hiitIsWork=true;
+  hiitExIdx=0; hiitTourNum=1; hiitTotalEx=0;
+  document.getElementById('hiitBtn').textContent='▶ Démarrer';
+  document.getElementById('hiitTime').style.color='var(--white)';
+  hiitUpdateUI();
+}
+
+function hiitFinish(){
+  clearInterval(hiitInterval);
+  hiitRunning=false;
+  document.getElementById('hiitExName').textContent='🎉 SÉANCE TERMINÉE !';
+  document.getElementById('hiitTime').textContent='✓';
+  document.getElementById('hiitTime').style.color='var(--gold)';
+  document.getElementById('hiitPhase').textContent='Incroyable Sarah ! 💪';
+  document.getElementById('hiitBtn').textContent='↺ Recommencer';
+  if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
+}
+
+hiitRenderList(); hiitUpdateUI();
+
+// ══ MESURES ══
+const mesFields = [
+  {key:'bras', label:'Tour de bras', unit:'cm'},
+  {key:'cuisse', label:'Haut de cuisse', unit:'cm'},
+  {key:'hanches', label:'Hanches', unit:'cm'},
+  {key:'poitrine', label:'Poitrine', unit:'cm'},
+  {key:'ventre', label:'Ventre (5cm ↑ nombril)', unit:'cm'},
+];
+let mesHist = JSON.parse(localStorage.getItem('mes_hist')||'[]');
+
+function mesRenderInputs(){
+  document.getElementById('mesureInputs').innerHTML = mesFields.map(f=>`
+    <div class="mes-input-row">
+      <div class="mes-label">${f.label}</div>
+      <input class="mes-input" type="number" id="mes_${f.key}" placeholder="—" step="0.1">
+      <div class="mes-unit">${f.unit}</div>
+    </div>`).join('');
+}
+
+function saveMesures(){
+  const entry = { date: new Date().toLocaleDateString('fr-FR'), vals:{} };
+  let hasVal = false;
+  mesFields.forEach(f=>{
+    const v = parseFloat(document.getElementById('mes_'+f.key).value);
+    if(!isNaN(v)){ entry.vals[f.key]=v; hasVal=true; }
+  });
+  if(!hasVal){ alert('Entre au moins une mesure !'); return; }
+  mesHist.unshift(entry);
+  if(mesHist.length>12) mesHist.pop();
+  localStorage.setItem('mes_hist', JSON.stringify(mesHist));
+  mesRenderHistory();
+  // clear inputs
+  mesFields.forEach(f=>document.getElementById('mes_'+f.key).value='');
+  const b=document.getElementById('mesureBtn');
+  b.textContent='✅ Mesures enregistrées !';
+  setTimeout(()=>b.textContent='📏 Enregistrer les mesures',2000);
+}
+
+function mesRenderHistory(){
+  const c = document.getElementById('mesureHistory');
+  if(!mesHist.length){ c.innerHTML=''; return; }
+  c.innerHTML = `<div class="sub-h" style="margin-top:0;margin-bottom:14px;">Historique</div>` +
+  mesHist.map((entry, i)=>{
+    const prev = mesHist[i+1];
+    const rows = mesFields.filter(f=>entry.vals[f.key]!==undefined).map(f=>{
+      const val = entry.vals[f.key];
+      let diffHtml = '';
+      if(prev && prev.vals[f.key]!==undefined){
+        const d = val - prev.vals[f.key];
+        const cls = d<0?'neg':'pos';
+        diffHtml = `<span class="mes-hist-diff ${cls}">${d>0?'+':''}${d.toFixed(1)}</span>`;
+      }
+      return `<div class="mes-hist-row">
+        <span class="mes-hist-name">${f.label}</span>
+        <span class="mes-hist-val">${val} ${f.unit}${diffHtml}</span>
+      </div>`;
+    }).join('');
+    return `<div class="mes-hist-card"><div class="mes-hist-date">📅 ${entry.date}</div>${rows}</div>`;
+  }).join('');
+}
+
+mesRenderInputs(); mesRenderHistory();
 </script>
 </body>
 </html>
