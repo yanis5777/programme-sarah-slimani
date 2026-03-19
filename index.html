@@ -448,10 +448,11 @@
   <button class="nav-btn active" onclick="navTo('mois',this)">Phases</button>
   <button class="nav-btn" onclick="navTo('training',this)">Training</button>
   <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
+  <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
+  <button class="nav-btn" onclick="navTo('courses',this)">🛒 Courses</button>
   <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
   <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
-  <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
   <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
 </nav>
@@ -514,7 +515,7 @@
       <div style="flex:1"><div class="t-name">Séance 2 — Body Pump</div><div class="t-info">Cours collectif · 55 min · 400-600 kcal</div></div>
       <span class="chevron">▼</span>
     </div>
-    <div class="t-body"><p class="t-text">Tous les groupes musculaires. Idéal pour le galbe féminin. 400-600 kcal brûlées. Cours collectif obligatoire 1x/semaine minimum.</p></div>
+    <div class="t-body"><p class="t-text">Tous les groupes musculaires. Idéal pour le galbe féminin. 400-600 kcal brûlées. Cours collectif obligatoire 2x/semaine.</p></div>
   </div>
 
   <div class="t-card" onclick="toggleT(this)">
@@ -611,6 +612,37 @@
   <div style="margin-top:20px;"><div id="hiitList"></div></div>
 </section>
 
+<!-- TRACKER -->
+<section class="section" id="tracker">
+  <div class="section-tag">Suivi personnalisé</div>
+  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🍑</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 1 — Fessiers & Cuisses</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🎵</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 2 — Body Pump</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">💪</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 3 — Dos, Bras & Taille</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🏃‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 4 — Footing</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🔥</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 5 — HIIT Circuit</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🚴‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 6 — RPM / Spinning</div></div>
+    </div>
+    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
+      <div class="seance-check">🧘‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Jour 7 — Récupération</div></div>
+    </div>
+  </div>
+  <div id="seanceCount" style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:600;">0 / 6 séances cette semaine</div>
+</section>
+
 <!-- NUTRITION -->
 <section class="section" id="alim">
   <div class="section-tag">1 750 kcal · 130g protéines</div>
@@ -677,38 +709,14 @@
   <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser tous les jours</div><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
 </section>
 
-<!-- TRACKER -->
-<section class="section" id="tracker">
-  <div class="section-tag">Suivi personnalisé</div>
-  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🍑</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 1 — Fessiers & Cuisses</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🎵</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 2 — Body Pump</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">💪</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 3 — Dos, Bras & Taille</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🏃‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 4 — Footing</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🔥</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 5 — HIIT Circuit</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🚴‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 6 — RPM / Spinning</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🧘‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Jour 7 — Récupération</div></div>
-    </div>
-  </div>
-  <div id="seanceCount" style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px;font-weight:600;">0 / 6 séances cette semaine</div>
+<!-- MESURES -->
+<section class="section" id="mesures">
+  <div class="section-tag">Suivi corporel · Dimanche matin à jeun</div>
+  <h2 class="section-title">Poids &<br>Mesures</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">À faire le dimanche matin, à jeun, toujours au même endroit 📏</p>
 
-  <div class="w-block">
-    <div class="w-lbl">Poids du jour (kg)</div>
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--rose-light);font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">⚖️ Poids du dimanche</div>
     <div class="w-disp" id="wDisp">—<span> kg</span></div>
     <div class="w-ctrls">
       <button class="w-btn m" onclick="cw(-0.1)">−0.1</button>
@@ -717,24 +725,31 @@
       <button class="w-btn p" onclick="cw(0.1)">+0.1</button>
     </div>
   </div>
-  <button class="save-btn" onclick="saveW()">📌 Enregistrer le poids</button>
+
+  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--rose-light);font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">📏 Mensurations</div>
+    <div id="mesureInputs"></div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-bottom:16px;">
+    <button onclick="saveTout()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📌 Enregistrer tout</button>
+    <button onclick="resetDerniereMesure()" style="flex:1;padding:16px;background:rgba(255,80,80,0.15);color:#FF9090;border:1px solid rgba(255,80,80,0.35);border-radius:14px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="resetMesureBtn">🗑 Annuler</button>
+  </div>
+
   <div id="wHist"></div>
+  <div id="mesureHistory"></div>
 </section>
 
-<!-- MESURES -->
-<section class="section" id="mesures">
-  <div class="section-tag">Suivi corporel</div>
-  <h2 class="section-title">Mesures<br>hebdomadaires</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">À prendre le dimanche matin, à jeun, toujours au même endroit 📏</p>
-  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:20px;padding:22px;margin-bottom:16px;">
-    <div style="font-size:12px;color:var(--light);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Saisir les mesures de cette semaine</div>
-    <div id="mesureInputs"></div>
-    <div style="display:flex;gap:10px;margin-top:16px;">
-      <button onclick="saveMesures()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="mesureBtn">📏 Enregistrer</button>
-      <button onclick="resetDerniereMesure()" style="flex:1;padding:16px;background:rgba(255,80,80,0.15);color:#FF9090;border:1px solid rgba(255,80,80,0.35);border-radius:14px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;" id="resetMesureBtn">🗑 Annuler</button>
-    </div>
+<!-- LISTE COURSES -->
+<section class="section" id="courses">
+  <div class="section-tag">Semaine type</div>
+  <h2 class="section-title">🛒 Liste<br>de courses</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:20px;font-weight:500;">Coche ce que tu as déjà ou ce que tu achètes ✓</p>
+  <div style="display:flex;gap:10px;margin-bottom:20px;">
+    <button onclick="resetCourses()" style="flex:1;padding:12px;background:rgba(255,255,255,0.08);color:var(--light);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Tout réinitialiser</button>
+    <button onclick="checkAllCourses()" style="flex:1;padding:12px;background:rgba(255,92,138,0.15);color:var(--rose-light);border:1px solid rgba(255,92,138,0.30);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">✓ Tout cocher</button>
   </div>
-  <div id="mesureHistory"></div>
+  <div id="coursesList"></div>
 </section>
 
 <!-- MENTAL -->
@@ -899,6 +914,101 @@ function toggleSeance(el){
   document.getElementById('seanceCount').textContent = txt;
   document.getElementById('seanceCount').style.color = done >= 6 ? 'var(--rose-light)' : 'var(--muted)';
 }
+
+function saveTout(){
+  // Save weight
+  if(W>0){
+    H.unshift({date:new Date().toLocaleDateString('fr-FR'),val:W});
+    if(H.length>12)H.pop();
+    localStorage.setItem('sh',JSON.stringify(H));
+    rendH();
+  }
+  // Save mesures
+  saveMesures();
+}
+
+// ── LISTE COURSES
+const coursesData = [
+  {cat:'🥩 Protéines', items:[
+    'Filets de poulet — 800g','Saumon sauvage — 600g (4 pavés)','Cabillaud — 400g (2 filets)',
+    'Bœuf haché 5% MG — 300g','Crevettes — 300g','Thon en boîte — 3 boîtes (140g)',
+    'Œufs — 1 boîte de 12','Fromage blanc 0% — 3×500g','Yaourt grec 0% — 6 pots (150g)',
+    'Feta — 100g','Mozzarella allégée — 125g'
+  ]},
+  {cat:'🥦 Légumes', items:[
+    'Épinards frais — 500g','Courgettes — 4 (≈800g)','Poivrons rouges/jaunes — 4',
+    'Brocoli — 1 tête (400g)','Haricots verts — 400g','Betterave cuite — 2',
+    'Fenouil — 1','Champignons — 250g','Poireaux — 2','Tomates cerises — 250g',
+    'Tomates — 4','Edamame surgelé — 200g'
+  ]},
+  {cat:'🍠 Féculents & Légumineuses', items:[
+    'Patate douce — 3 (≈600g)','Quinoa — 400g','Riz basmati/jasmin — 400g',
+    'Lentilles vertes — 400g','Lentilles corail — 200g','Lentilles beluga — 200g',
+    'Pois chiches en boîte — 2×400g','Haricots rouges en boîte — 1×400g',
+    'Flocons d\'avoine — 500g','Pain complet — 1 paquet tranches','Wraps complets — 6'
+  ]},
+  {cat:'🍎 Fruits', items:[
+    'Bananes — 6','Fraises — 250g','Myrtilles — 250g',
+    'Fruits rouges mélange — 200g','Kiwis — 4','Pommes — 6','Citrons — 4'
+  ]},
+  {cat:'🥑 Graisses & Oléagineux', items:[
+    'Avocats — 4','Amandes — 200g','Noix — 150g',
+    'Beurre d\'amande — 1 pot (200g)','Huile d\'olive — 1 bouteille',
+    'Graines de chia — 150g','Graines de courge — 100g','Tahini — 1 pot'
+  ]},
+  {cat:'🥛 Laitiers & Boissons', items:[
+    'Lait végétal (amande/avoine) — 2×1L','Miel — 1 petit pot'
+  ]},
+  {cat:'🧴 Condiments & Épices', items:[
+    'Sauce soja — 1 bouteille','Sauce teriyaki — 1 bouteille',
+    'Vinaigre balsamique — 1 bouteille','Curcuma — 1 sachet',
+    'Gingembre frais — 1 morceau','Cannelle — 1 sachet',
+    'Sésame — 50g','Tomates séchées — 100g','Edamame — 200g'
+  ]},
+  {cat:'💊 Compléments', items:[
+    'Fer Bisglycinate — 25-30mg/j','Vitamine C 500mg — avec le fer',
+    'B9 400µg + B12 1000µg','Whey Isolat — 25g/post-séance',
+    'Vitamine D3 2000UI + K2 100µg','Magnésium Bisglycinate 300mg',
+    'Collagène Marin 10g','Oméga-3 EPA/DHA 1-2g','Probiotiques 1 gélule',
+    'CLA 3g/j','Zinc Bisglycinate 15mg'
+  ]}
+];
+
+let coursesState = JSON.parse(localStorage.getItem('courses_state')||'{}');
+
+function renderCourses(){
+  const c = document.getElementById('coursesList');
+  c.innerHTML = coursesData.map((cat, ci)=>`
+    <div style="margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:800;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">${cat.cat}</div>
+      ${cat.items.map((item,ii)=>{
+        const key=`${ci}-${ii}`;
+        const done = coursesState[key];
+        return `<div onclick="toggleCourse('${key}',this)" style="display:flex;align-items:center;gap:12px;padding:10px 14px;margin-bottom:6px;background:${done?'rgba(255,92,138,0.12)':'rgba(255,255,255,0.05)'};border:1px solid ${done?'rgba(255,92,138,0.35)':'rgba(255,255,255,0.08)'};border-radius:12px;cursor:pointer;transition:all 0.2s;" data-key="${key}">
+          <div style="width:22px;height:22px;border-radius:7px;border:2px solid ${done?'var(--rose)':'rgba(255,255,255,0.25)'};background:${done?'var(--rose)':'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:white;">${done?'✓':''}</div>
+          <span style="font-size:14px;font-weight:${done?'600':'500'};color:${done?'var(--muted)':'var(--white)'};text-decoration:${done?'line-through':'none'};">${item}</span>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+function toggleCourse(key, el){
+  coursesState[key] = !coursesState[key];
+  localStorage.setItem('courses_state', JSON.stringify(coursesState));
+  renderCourses();
+}
+
+function resetCourses(){
+  if(confirm('Réinitialiser toute la liste ?')){ coursesState={}; localStorage.setItem('courses_state','{}'); renderCourses(); }
+}
+
+function checkAllCourses(){
+  coursesData.forEach((cat,ci)=>cat.items.forEach((_,ii)=>coursesState[`${ci}-${ii}`]=true));
+  localStorage.setItem('courses_state',JSON.stringify(coursesState));
+  renderCourses();
+}
+
+renderCourses();
 
 updW(); rendH(); updCd(); updPb();
 setInterval(updCd,30000);
