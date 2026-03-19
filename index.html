@@ -383,7 +383,7 @@
     <div class="stat-pill"><span class="stat-value">6</span><span class="stat-label">Séances / sem</span></div>
     <div class="stat-pill"><span class="stat-value">130 g</span><span class="stat-label">Protéines / jour</span></div>
     <div class="stat-pill accent">
-      <div><div class="stat-value pulse">84 jours</div><div class="stat-label">Avant le voyage ✈</div></div>
+      <div><div class="stat-value pulse" id="heroDays">— jours</div><div class="stat-label">Avant le voyage ✈</div></div>
       <div style="font-size:40px;">🌊</div>
     </div>
   </div>
@@ -755,6 +755,7 @@ function updCd(){
   const diff=new Date('2026-06-20')-new Date();
   if(diff<=0){['cdD','cdH','cdM'].forEach(id=>document.getElementById(id).textContent='0');return;}
   document.getElementById('cdD').textContent=Math.floor(diff/86400000);
+  document.getElementById('heroDays').textContent=Math.floor(diff/86400000)+' jours';
   document.getElementById('cdH').textContent=Math.floor((diff%86400000)/3600000);
   document.getElementById('cdM').textContent=Math.floor((diff%3600000)/60000);
 }
