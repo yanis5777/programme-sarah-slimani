@@ -74,8 +74,8 @@
   }
   .hero h1 {
     font-family:'Playfair Display', serif;
-    font-size:58px; font-weight:900; line-height:1.0; letter-spacing:-1px;
-    color: var(--white); margin-bottom:8px;
+    font-size:44px; font-weight:900; line-height:1.1; letter-spacing:-1px;
+    color: var(--white); margin-bottom:8px; white-space:nowrap;
   }
   .hero h1 span { color:var(--rose); font-style:italic; }
   .hero-sub { font-size:14px; color:var(--light); margin-bottom:36px; font-weight:400; }
@@ -485,11 +485,10 @@
   <button class="nav-btn" onclick="navTo('training',this)">Training</button>
   <button class="nav-btn" onclick="navTo('etirements',this)">Étirements</button>
   <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
-  
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
-  <button class="nav-btn" onclick="navTo('courses',this)">Courses</button>
   <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
   <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
+  <button class="nav-btn" onclick="navTo('courses',this)">Courses</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
   <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
 </nav>
@@ -910,28 +909,48 @@ const fd = [
   ]}
 ];
 
-document.getElementById('foodDays').innerHTML = fd.map(d=>`
-  <div class="f-card">
+const sDayColors = [
+  {border:'rgba(255,92,138,0.30)',bg:'rgba(255,92,138,0.05)',tag:'#FF8FAD'},
+  {border:'rgba(80,160,255,0.28)',bg:'rgba(80,160,255,0.05)',tag:'#60A8FF'},
+  {border:'rgba(80,220,120,0.28)',bg:'rgba(80,220,120,0.04)',tag:'#50DC78'},
+  {border:'rgba(200,80,255,0.28)',bg:'rgba(200,80,255,0.04)',tag:'#D080FF'},
+  {border:'rgba(255,160,40,0.28)',bg:'rgba(255,160,40,0.04)',tag:'#FFA028'},
+  {border:'rgba(240,192,96,0.28)',bg:'rgba(240,192,96,0.04)',tag:'#F0C060'},
+  {border:'rgba(255,92,138,0.30)',bg:'rgba(255,92,138,0.05)',tag:'#FF8FAD'},
+];
+const sMealColors = {
+  'Petit-déjeuner':'#F0C060',
+  'Déjeuner':'#50DC78','Collation':'#60A8FF',
+  'Dîner':'#FF8FAD','Post-séance':'#C9A84C',
+};
+document.getElementById('foodDays').innerHTML = fd.map((d,di)=>{
+  const dc = sDayColors[di] || sDayColors[0];
+  return `
+  <div class="f-card" style="border-color:${dc.border};background:${dc.bg}">
     <div class="f-header" onclick="this.parentElement.classList.toggle('open')">
       <div>
-        <div class="f-title">${d.day}</div>
+        <div class="f-title" style="color:${dc.tag}">${d.day}</div>
         <div class="f-macros">
           <span class="m-chip">Prot <span>${d.prot}g</span></span>
           <span class="m-chip">Gluc <span>${d.gluc}g</span></span>
           <span class="m-chip">${d.kcal} kcal</span>
         </div>
       </div>
-      <span style="color:var(--rose-light);font-size:18px;margin-top:4px;">▼</span>
+      <span style="color:${dc.tag};font-size:18px;margin-top:4px;">▼</span>
     </div>
     <div class="f-body">
-      ${d.meals.map(m=>`
-        <div class="meal">
-          <div class="meal-lbl">${m.l}</div>
+      ${d.meals.map(m=>{
+        const mc = sMealColors[m.l] || 'var(--rose)';
+        return `
+        <div class="meal" style="border-left:3px solid ${mc}33;padding-left:10px;margin-left:-10px;">
+          <div class="meal-lbl" style="color:${mc}">${m.l}</div>
           <div class="meal-name">${m.n}</div>
           <div class="meal-ing">${m.i}</div>
-        </div>`).join('')}
+        </div>`;
+      }).join('')}
     </div>
-  </div>`).join('');
+  </div>`;
+}).join('');
 
 function toggleT(el){el.classList.toggle('open')}
 function toggleExS(el, event){ event.stopPropagation(); el.classList.toggle('done'); }
@@ -1106,7 +1125,7 @@ function strReset(){
 function toggleStr(el){el.classList.toggle('open');}
 
 // ── NAV SCROLL TRACKING
-const sectionIds = ['mois','training','etirements','hiit','alim','courses','suppl','regles','mental','mesures'];
+const sectionIds = ['mois','training','etirements','hiit','alim','suppl','regles','courses','mental','mesures'];
 const navBtns = document.querySelectorAll('.nav-btn');
 
 const observer = new IntersectionObserver((entries)=>{
@@ -1121,7 +1140,7 @@ const observer = new IntersectionObserver((entries)=>{
       }
     }
   });
-},{threshold:0.3, rootMargin:'-60px 0px -40% 0px'});
+},{threshold:0.15, rootMargin:'-65px 0px -30% 0px'});
 
 sectionIds.forEach(id=>{
   const el = document.getElementById(id);
