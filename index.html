@@ -20,7 +20,7 @@
     --muted: #C0A0E0;
   }
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  html { scroll-behavior:smooth; }
+  html { scroll-behavior:auto; }
 
   body {
     background: #1A1028;
@@ -169,10 +169,25 @@
 
   /* ══ TRAINING ══ */
   .t-card {
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.10);
     border-radius:18px; margin-bottom:12px; overflow:hidden;
   }
+  .t-card.muscu{background:rgba(255,92,138,0.06);border-color:rgba(255,92,138,0.25);}
+  .t-card.muscu .t-icon{background:linear-gradient(135deg,rgba(255,92,138,0.35),rgba(255,92,138,0.08));}
+  .t-card.muscu .t-info{color:#FF8FAD;}
+  .t-card.collectif{background:rgba(200,80,255,0.06);border-color:rgba(200,80,255,0.25);}
+  .t-card.collectif .t-icon{background:linear-gradient(135deg,rgba(200,80,255,0.35),rgba(200,80,255,0.08));}
+  .t-card.collectif .t-info{color:#D080FF;}
+  .t-card.cardio{background:rgba(80,160,255,0.06);border-color:rgba(80,160,255,0.25);}
+  .t-card.cardio .t-icon{background:linear-gradient(135deg,rgba(80,160,255,0.35),rgba(80,160,255,0.08));}
+  .t-card.cardio .t-info{color:#80C0FF;}
+  .t-card.hiit{background:rgba(255,160,40,0.06);border-color:rgba(255,160,40,0.25);}
+  .t-card.hiit .t-icon{background:linear-gradient(135deg,rgba(255,160,40,0.35),rgba(255,160,40,0.08));}
+  .t-card.hiit .t-info{color:#FFA028;}
+  .t-card.recup{background:rgba(80,220,120,0.05);border-color:rgba(80,220,120,0.22);}
+  .t-card.recup .t-icon{background:linear-gradient(135deg,rgba(80,220,120,0.30),rgba(80,220,120,0.06));}
+  .t-card.recup .t-info{color:#50DC78;}
   .t-header {
     padding:16px 18px; display:flex; align-items:center; gap:12px; cursor:pointer;
   }
@@ -484,9 +499,7 @@
   <button class="nav-btn active" onclick="navTo('mois',this)">Phases</button>
   <button class="nav-btn" onclick="navTo('training',this)">Training</button>
   <button class="nav-btn" onclick="navTo('etirements',this)">Étirements</button>
-  <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
-  <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
   <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
   <button class="nav-btn" onclick="navTo('courses',this)">Courses</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
@@ -527,7 +540,7 @@
   <div class="section-tag">6 séances / semaine</div>
   <h2 class="section-title">Programme<br>entraînements</h2>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card muscu" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🍑</div>
       <div style="flex:1"><div class="t-name">Séance 1 — Fessiers & Cuisses</div><div class="t-info">Muscu · 7 exercices + stepmill</div></div>
@@ -545,7 +558,7 @@
     </div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card collectif" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🎵</div>
       <div style="flex:1"><div class="t-name">Séance 2 — Body Pump</div><div class="t-info">Cours collectif · 55 min · 400-600 kcal</div></div>
@@ -554,7 +567,7 @@
     <div class="t-body"><p class="t-text">Tous les groupes musculaires. Idéal pour le galbe féminin. 400-600 kcal brûlées. Cours collectif obligatoire 2x/semaine.</p></div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card muscu" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">💪</div>
       <div style="flex:1"><div class="t-name">Séance 3 — Dos, Bras & Taille</div><div class="t-info">Muscu · 7 exercices + elliptique</div></div>
@@ -572,7 +585,7 @@
     </div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card cardio" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🏃‍♀️</div>
       <div style="flex:1"><div class="t-name">Séance 4 — Footing</div><div class="t-info">Cardio · 30-45 min · FC 120-140 bpm</div></div>
@@ -581,7 +594,7 @@
     <div class="t-body"><p class="t-text">Rythme "conversation" — si tu peux parler, c'est ok. Brûle graisse + cardio santé. Peut se faire le dimanche si besoin.</p></div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card hiit" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🔥</div>
       <div style="flex:1"><div class="t-name">Séance 5 — HIIT Circuit ⭐</div><div class="t-info">La + importante · 4 tours · 2 min repos</div></div>
@@ -597,10 +610,26 @@
       <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">High knees</div><div class="ex-detail">Cardio maximal · brûle graisse</div></div><div class="ex-badge">40s/20s</div></div>
       <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Plank shoulder tap</div><div class="ex-detail">Gainage + stabilité</div></div><div class="ex-badge">40s/20s</div></div>
       <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Kick-backs fessiers</div><div class="ex-detail">Fessiers ciblés</div></div><div class="ex-badge">40s/c</div></div>
+      <div style="background:rgba(255,160,40,0.06);border:1px solid rgba(255,160,40,0.25);border-radius:18px;padding:20px;margin-top:14px;text-align:center;">
+        <div id="hiitExName" style="font-size:12px;font-weight:700;color:#FFA028;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Appuie sur Démarrer</div>
+        <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:var(--white);line-height:1;">40</div>
+        <div id="hiitPhase" style="font-size:15px;font-weight:700;margin:6px 0 16px;color:var(--rose-light);">EFFORT 🔥</div>
+        <div style="display:flex;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap;" id="hiitDots"></div>
+        <div style="display:flex;justify-content:center;gap:20px;margin-bottom:18px;">
+          <div style="text-align:center;"><div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--white);">1/4</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div></div>
+          <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+          <div style="text-align:center;"><div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--white);">1/8</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button id="hiitBtn" onclick="hiitToggle();event.stopPropagation()" style="flex:2;padding:14px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:14px;font-size:15px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;">▶ Démarrer</button>
+          <button onclick="hiitReset();event.stopPropagation()" style="flex:1;padding:14px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺</button>
+        </div>
+      </div>
+      <div style="margin-top:14px;"><div id="hiitList"></div></div>
     </div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card collectif" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🚴‍♀️</div>
       <div style="flex:1"><div class="t-name">Séance 6 — RPM / Spinning</div><div class="t-info">Cours collectif · 45-55 min · 500-700 kcal</div></div>
@@ -609,7 +638,7 @@
     <div class="t-body"><p class="t-text">Meilleur cours pour brûler. Cuisses + fessiers + cardio intense. Ou autre cours disponible. Respecte les 2 cours collectifs/semaine.</p></div>
   </div>
 
-  <div class="t-card" onclick="toggleT(this)">
+  <div class="t-card recup" onclick="toggleT(this)">
     <div class="t-header">
       <div class="t-icon">🧘‍♀️</div>
       <div style="flex:1"><div class="t-name">Jour 7 — Récupération</div><div class="t-info">Repos actif · étirements · foam roller</div></div>
@@ -621,6 +650,49 @@
     <div style="font-size:10px;color:var(--rose);font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">✓ Séances cochées cette semaine</div>
     <div id="seancesTraining"></div>
     <div id="seanceCountT" style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px;font-weight:700;"></div>
+  </div>
+  <div style="margin-top:14px;">
+    <div style="font-size:10px;color:var(--rose);font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">💊 Compléments · Coche chaque prise</div>
+
+    <div style="background:rgba(255,200,80,0.06);border:1px solid rgba(255,200,80,0.22);border-radius:14px;padding:14px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="font-size:18px;">☀️</span><span style="font-size:11px;font-weight:800;color:#FFD060;text-transform:uppercase;letter-spacing:0.1em;">Matin · À jeun</span></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Fer Bisglycinate + Vit C</div><div class="s-time">25-30mg fer + 500mg Vit C · attendre 30 min avant café · Solgar / Nutri&Co</div></div></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Probiotiques</div><div class="s-time">1 gélule · Optibac / Pileje Lactibiane</div></div></div>
+    </div>
+
+    <div style="background:rgba(200,80,255,0.05);border:1px solid rgba(200,80,255,0.20);border-radius:14px;padding:14px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="font-size:18px;">🍳</span><span style="font-size:11px;font-weight:800;color:#D080FF;text-transform:uppercase;letter-spacing:0.1em;">Petit-déjeuner</span></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Collagène Marin + Vit C</div><div class="s-time">10g + 200mg Vit C · Eiyolab / Aime Skincare</div></div></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">B9 + B12</div><div class="s-time">400µg B9 + 1000µg B12 · Nutri&Co / Solgar</div></div></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Vitamine D3 + K2</div><div class="s-time">2000 UI D3 + 100µg K2 · Nutri&Co D3K2</div></div></div>
+    </div>
+
+    <div style="background:rgba(80,160,255,0.05);border:1px solid rgba(80,160,255,0.18);border-radius:14px;padding:14px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="font-size:18px;">🍽️</span><span style="font-size:11px;font-weight:800;color:#80C0FF;text-transform:uppercase;letter-spacing:0.1em;">Déjeuner ou dîner</span></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Oméga-3 EPA/DHA</div><div class="s-time">1-2g EPA+DHA · avec matières grasses · Nutri&Co / Solgar</div></div></div>
+    </div>
+
+    <div style="background:rgba(255,92,138,0.06);border:1px solid rgba(255,92,138,0.22);border-radius:14px;padding:14px;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="font-size:18px;">🏋️</span><span style="font-size:11px;font-weight:800;color:#FF8FAD;text-transform:uppercase;letter-spacing:0.1em;">Post-séance · 30 min</span></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Whey Protéine Isolat</div><div class="s-time">25g · shaker eau froide 300ml · Eiyolab / MyProtein</div></div></div>
+    </div>
+
+    <div style="background:rgba(80,220,120,0.04);border:1px solid rgba(80,220,120,0.18);border-radius:14px;padding:14px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="font-size:18px;">🌙</span><span style="font-size:11px;font-weight:800;color:#50DC78;text-transform:uppercase;letter-spacing:0.1em;">Soir · Avant coucher</span></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Magnésium Bisglycinate</div><div class="s-time">300mg · Nutri&Co</div></div></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Zinc Bisglycinate</div><div class="s-time">15mg · Nutri&Co / Solgar</div></div></div>
+      <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Ashwagandha KSM-66</div><div class="s-time">300mg · cortisol + énergie + appétit · Nutri&Co</div></div></div>
+    </div>
+
+    <div style="background:rgba(255,200,80,0.05);border:1px solid rgba(255,200,80,0.15);border-radius:12px;padding:12px 14px;margin-top:10px;">
+      <div style="font-size:11px;font-weight:800;color:#FFD060;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">🩸 Fer — règles clés</div>
+      <div style="font-size:13px;color:var(--light);line-height:1.75;">
+        · Jamais café/thé dans les 2h après la prise de fer<br>
+        · Jamais laitages avec le fer (calcium bloque -50%)<br>
+        · Combos gagnants : épinards + citron · lentilles + poivrons<br>
+        · Prise de sang à 6 semaines pour vérifier la ferritine
+      </div>
+    </div>
   </div>
 </section>
 
@@ -681,33 +753,6 @@
     <div class="str-bd"><a href="https://www.youtube.com/results?search_query=shoulder+cross+body+neck+stretch+women" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">1) Bras tendu passé devant l'autre, pression du coude. 2) Oreille vers épaule, main légère sur la tête — jamais forcer sur la nuque.</div><div class="str-tip">Après rowing, tirage et body pump. Détend les trapèzes et prévient les cervicales.</div></div>
   </div>
 </section>
-<section class="section" id="hiit">
-  <div class="section-tag">Séance 5</div>
-  <h2 class="section-title">⏱ Timer HIIT</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:24px;font-weight:500;">40s effort · 20s repos · 8 exercices · 4 tours</p>
-  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,92,138,0.35);border-radius:24px;padding:28px 20px;text-align:center;">
-    <div id="hiitExName" style="font-size:13px;font-weight:700;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Appuie sur Démarrer</div>
-    <div id="hiitTime" style="font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:var(--white);line-height:1;">40</div>
-    <div id="hiitPhase" style="font-size:16px;font-weight:700;margin:8px 0 20px;color:var(--rose-light);">EFFORT 🔥</div>
-    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="hiitDots"></div>
-    <div style="display:flex;justify-content:center;gap:20px;margin-bottom:24px;">
-      <div style="text-align:center;">
-        <div id="hiitTour" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/4</div>
-        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Tour</div>
-      </div>
-      <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
-      <div style="text-align:center;">
-        <div id="hiitEx" style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);">1/8</div>
-        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Exercice</div>
-      </div>
-    </div>
-    <div style="display:flex;gap:12px;">
-      <button id="hiitBtn" onclick="hiitToggle()" style="flex:2;padding:16px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:16px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;">▶ Démarrer</button>
-      <button onclick="hiitReset()" style="flex:1;padding:16px;background:rgba(255,255,255,0.10);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Reset</button>
-    </div>
-  </div>
-  <div style="margin-top:20px;"><div id="hiitList"></div></div>
-</section>
 
 <!-- TRACKER -->
 
@@ -719,42 +764,7 @@
   <div id="foodDays"></div>
 </section>
 
-<!-- COMPLÉMENTS -->
-<section class="section" id="suppl">
-  <div class="section-tag">Stack compléments</div>
-  <h2 class="section-title">Compléments<br>alimentaires</h2>
 
-  <div class="sg">
-    <div class="sg-title urg">⚡ URGENT — Anémie prioritaire</div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Fer Bisglycinate</div><div class="s-time">25-30mg · à jeun · matin · Solgar Gentle Iron / Nutri&Co</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Vitamine C 500mg</div><div class="s-time">500mg · avec le fer · matin · Nutri&Co liposomale</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">B9 + B12</div><div class="s-time">400µg B9 + 1000µg B12 · matin · Nutri&Co / Solgar</div></div></div>
-  </div>
-
-  <div class="sg">
-    <div class="sg-title p1">⚡ Priorité 1</div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Whey Protéine Isolat</div><div class="s-time">25g post-séance · Eiyolab / Nutri&Co / MyProtein</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Vitamine D3 + K2</div><div class="s-time">2000 UI D3 + 100µg K2 · matin · Nutri&Co D3K2</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Magnésium Bisglycinate</div><div class="s-time">300mg · soir avant coucher · Nutri&Co</div></div></div>
-  </div>
-
-  <div class="sg">
-    <div class="sg-title p2">✦ Priorité 2 — Peau & Galbe</div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Collagène Marin + Vit C</div><div class="s-time">10g + 200mg Vit C · matin · Eiyolab / Aime Skincare</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Oméga-3 EPA/DHA</div><div class="s-time">1-2g EPA+DHA · avec repas · Nutri&Co / Solgar</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Probiotiques</div><div class="s-time">1 gélule · matin à jeun · Optibac / Pileje Lactibiane</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">CLA</div><div class="s-time">3g/j · avec repas · Solgar CLA / MyProtein</div></div></div>
-    <div class="s-row"><div class="s-chk" onclick="chk(this)"></div><div><div class="s-name">Zinc Bisglycinate</div><div class="s-time">15mg · soir · Nutri&Co / Solgar</div></div></div>
-  </div>
-
-  <div class="sub-h">🩸 Protocole Anémie</div>
-  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Fer bisglycinate chaque matin</div><div class="an-desc">À jeun au réveil + Vit C 500mg + eau froide. Attendre 30-45 min avant café ou petit-déj.</div></div></div>
-  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Jamais café/thé avec le fer</div><div class="an-desc">Les tanins réduisent l'absorption de 60-80%. Attendre 2h minimum.</div></div></div>
-  <div class="an-row"><div><div class="an-badge ab">ABSOLUE</div></div><div><div class="an-name">Jamais laitages avec le fer</div><div class="an-desc">Le calcium inhibe l'absorption de 50-60%. Même règle : 2h minimum.</div></div></div>
-  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Combos fer végétal + Vit C</div><div class="an-desc">Épinards + citron · Lentilles + poivrons · Haricots + tomates. La Vit C triple l'absorption.</div></div></div>
-  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Prise de sang à 6 semaines</div><div class="an-desc">Vérifier ferritine (cible >50 µg/L) · hémoglobine (cible >12 g/dL) · NFS complète.</div></div></div>
-  <div class="an-row"><div><div class="an-badge hi">⭐⭐⭐</div></div><div><div class="an-name">Durée minimum 3 mois</div><div class="an-desc">Continuer même si tu te sens mieux. 3 mois pour reconstituer les réserves de ferritine.</div></div></div>
-</section>
 
 <!-- RÈGLES -->
 <section class="section" id="regles">
@@ -801,13 +811,42 @@
   <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
   <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
   <div class="sub-h">Les 7 clés mentales</div>
-  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
-  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
-  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
-  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
-  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
-  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
-  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
+  <div onclick="(function(el){const b=el.querySelector('.cles-body');const c=el.querySelector('.cles-chv');b.style.display=b.style.display==='none'?'block':'none';c.style.transform=b.style.display==='block'?'rotate(180deg)':''})(this)" style="background:linear-gradient(135deg,rgba(255,92,138,0.10),rgba(130,40,220,0.08));border:1px solid rgba(255,92,138,0.28);border-radius:14px;overflow:hidden;cursor:pointer;margin-bottom:8px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;">
+      <div style="font-size:14px;font-weight:700;color:#FF8FAD;">🧠 Les 7 clés pour réussir</div>
+      <span style="color:var(--muted);font-size:12px;transition:transform 0.3s;" class="cles-chv">▼</span>
+    </div>
+    <div class="cles-body" style="display:none;padding:0 18px 16px;border-top:1px solid rgba(255,92,138,0.15);">
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:var(--rose);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">1</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Le progrès n'est pas linéaire.</strong> Des semaines à −1,5 kg, des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:#8A2DDC;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">2</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:var(--rose);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">3</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:#8A2DDC;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">4</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:var(--rose);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">5</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée. ✈</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:28px;height:28px;background:#8A2DDC;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">6</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Célèbre les non-victoires.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre. Chaque bonne décision compte.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 0;">
+        <div style="width:28px;height:28px;background:var(--rose);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;">7</div>
+        <div style="font-size:13px;color:var(--light);line-height:1.6;"><strong style="color:var(--white);">Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- MESURES -->
@@ -862,40 +901,40 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // FOOD DATA
 const fd = [
-  {day:"Jour 1 — Fessiers & Cuisses",kcal:1672,prot:132,gluc:162,meals:[
+  {day:"Jour 1",kcal:1672,prot:132,gluc:162,meals:[
     {l:"Petit-déjeuner",n:"Bowl protéiné fraises",i:"150g fromage blanc 0% · 30g flocons avoine · fraises · graines de chia"},
     {l:"Déjeuner",n:"Poulet quinoa légumes rôtis",i:"150g poulet · 80g quinoa · courgette + poivrons · huile d'olive"},
     {l:"Collation",n:"Yaourt grec & amandes",i:"150g yaourt grec 0% · 20g amandes · 1 pomme"},
     {l:"Dîner",n:"Saumon épinards patate douce",i:"150g saumon · épinards · 120g patate douce · citron · huile olive"},
     {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey isolat · 200ml eau"}
   ]},
-  {day:"Jour 2 — Body Pump",kcal:1650,prot:130,gluc:158,meals:[
+  {day:"Jour 2",kcal:1650,prot:130,gluc:158,meals:[
     {l:"Petit-déjeuner",n:"Bowl protéiné fraises",i:"150g fromage blanc 0% · 30g flocons avoine · fraises · chia"},
     {l:"Déjeuner",n:"Salade niçoise légère",i:"1 boîte thon · haricots verts · 1 œuf dur · tomates · olives"},
     {l:"Collation",n:"Smoothie protéiné banane",i:"1 banane · 150ml lait végétal · 20g whey · beurre d'amande"},
     {l:"Dîner",n:"Lentilles beluga épinards feta",i:"160g lentilles · épinards · 30g feta · tomates séchées · huile olive"},
     {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey · 200ml lait végétal"}
   ]},
-  {day:"Jour 3 — Dos, Bras & Taille",kcal:1635,prot:128,gluc:162,meals:[
+  {day:"Jour 3",kcal:1635,prot:128,gluc:162,meals:[
     {l:"Petit-déjeuner",n:"Porridge avoine protéiné",i:"60g flocons avoine · 1 scoop whey vanille · fruits rouges · lait végétal"},
     {l:"Déjeuner",n:"Wraps poulet avocat",i:"2 wraps complets · 120g poulet · ½ avocat · salade · tomates"},
     {l:"Collation",n:"Fromage blanc myrtilles",i:"150g fromage blanc 0% · 80g myrtilles · noix · chia"},
     {l:"Dîner",n:"Cabillaud légumes verts quinoa",i:"180g cabillaud · haricots verts · brocoli · 80g quinoa · citron"}
   ]},
-  {day:"Jour 4 — Footing",kcal:1700,prot:135,gluc:165,meals:[
+  {day:"Jour 4",kcal:1700,prot:135,gluc:165,meals:[
     {l:"Petit-déjeuner",n:"Pancakes protéinés banane",i:"2 œufs · 40g flocons avoine · 1 banane · beurre d'amande · cannelle"},
     {l:"Déjeuner",n:"Soupe lentilles carottes curcuma",i:"150g lentilles corail · carottes · oignons · curcuma · pain complet"},
     {l:"Collation",n:"Banane yaourt grec miel",i:"1 banane · 150g yaourt grec 0% · 20g amandes · miel"},
     {l:"Dîner",n:"Poulet rôti salade fenouil",i:"150g poulet rôti · fenouil · betterave · noix · vinaigrette balsamique"},
     {l:"Post-séance",n:"Shaker whey isolat",i:"25g whey · 200ml eau"}
   ]},
-  {day:"Jour 5 — HIIT Circuit 🔥",kcal:1635,prot:132,gluc:155,meals:[
+  {day:"Jour 5",kcal:1635,prot:132,gluc:155,meals:[
     {l:"Petit-déjeuner",n:"Smoothie bowl verde",i:"Épinards · 1 banane · lait végétal · 20g whey · kiwi · graines de courge"},
     {l:"Déjeuner",n:"Riz crevettes légumes sautés",i:"100g riz · 150g crevettes · poivrons + courgettes · sauce soja · sésame"},
     {l:"Collation",n:"Pomme beurre d'amande",i:"1 pomme · 1cs beurre d'amande · 10g amandes"},
     {l:"Dîner",n:"Bœuf haché courgettes gratiné",i:"120g bœuf haché 5% · courgettes · tomates · 30g mozzarella allégée"}
   ]},
-  {day:"Jour 6 — RPM / Spinning",kcal:1568,prot:125,gluc:152,meals:[
+  {day:"Jour 6",kcal:1568,prot:125,gluc:152,meals:[
     {l:"Petit-déjeuner",n:"Avocado toast œufs pochés",i:"2 tranches pain complet · ½ avocat · 2 œufs pochés · tomates cerises"},
     {l:"Déjeuner",n:"Buddha bowl végétarien",i:"Quinoa · pois chiches rôtis · betterave · avocat · épinards · tahini"},
     {l:"Collation",n:"Fruits rouges yaourt",i:"150g yaourt grec · 100g fruits rouges · 10g amandes"},
@@ -1005,7 +1044,6 @@ function navTo(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
-
 // ── SÉANCES TRAINING checklist
 const seancesData = [
   {ico:'🍑', nm:'Séance 1 — Fessiers & Cuisses'},
@@ -1124,8 +1162,20 @@ function strReset(){
 
 function toggleStr(el){el.classList.toggle('open');}
 
+// 7 clés accordion
+document.addEventListener('click', function(e){
+  const acc = e.target.closest('[class="cles-chv"]');
+  if(!acc) return;
+  const body = acc.closest('div[onclick]').querySelector('.cles-body');
+  if(body){
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    acc.style.transform = isOpen ? '' : 'rotate(180deg)';
+  }
+});
+
 // ── NAV SCROLL TRACKING
-const sectionIds = ['mois','training','etirements','hiit','alim','suppl','regles','courses','mental','mesures'];
+const sectionIds = ['mois','training','etirements','alim','regles','courses','mental','mesures'];
 const navBtns = document.querySelectorAll('.nav-btn');
 
 const observer = new IntersectionObserver((entries)=>{
@@ -1136,7 +1186,7 @@ const observer = new IntersectionObserver((entries)=>{
       const btn = document.querySelector(`.nav-btn[onclick*="${id}"]`);
       if(btn){
         btn.classList.add('active');
-        btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+        // no scrollIntoView to avoid page jump on HIIT timer interaction
       }
     }
   });
@@ -1189,7 +1239,7 @@ const coursesData = [
     'Graines de chia — 150g','Graines de courge — 100g','Tahini — 1 pot'
   ]},
   {cat:'🥛 Laitiers & Boissons', items:[
-    'Lait végétal (amande/avoine) — 2×1L','Miel — 1 petit pot'
+    'Lait végétal (amande/avoine) — 2×1L','Miel — 1 petit pot','Eau plate — 6L min'
   ]},
   {cat:'🧴 Condiments & Épices', items:[
     'Sauce soja — 1 bouteille','Sauce teriyaki — 1 bouteille',
@@ -1202,7 +1252,7 @@ const coursesData = [
     'B9 400µg + B12 1000µg','Whey Isolat — 25g/post-séance',
     'Vitamine D3 2000UI + K2 100µg','Magnésium Bisglycinate 300mg',
     'Collagène Marin 10g','Oméga-3 EPA/DHA 1-2g','Probiotiques 1 gélule',
-    'CLA 3g/j','Zinc Bisglycinate 15mg'
+    'Ashwagandha KSM-66 300mg/j','Zinc Bisglycinate 15mg'
   ]}
 ];
 
@@ -1349,10 +1399,12 @@ function hiitTick(){
 function hiitToggle(){
   if(!hiitRunning){
     hiitRunning = true;
+    sectionIds.forEach(id=>{const el=document.getElementById(id);if(el)observer.unobserve(el);});
     document.getElementById('hiitBtn').textContent = '⏸ Pause';
     hiitInterval = setInterval(hiitTick, 1000);
   } else {
     hiitRunning = false;
+    sectionIds.forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el);});
     document.getElementById('hiitBtn').textContent = '▶ Reprendre';
     clearInterval(hiitInterval);
   }
@@ -1362,6 +1414,7 @@ function hiitReset(){
   clearInterval(hiitInterval);
   hiitRunning=false; hiitSec=WORK; hiitIsWork=true;
   hiitExIdx=0; hiitTourNum=1; hiitTotalEx=0;
+  sectionIds.forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el);});
   document.getElementById('hiitBtn').textContent='▶ Démarrer';
   document.getElementById('hiitTime').style.color='var(--white)';
   hiitUpdateUI();
