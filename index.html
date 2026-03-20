@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Sarah — Transformation</title>
-<link rel="apple-touch-icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon_sarah.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sarah 💪">
@@ -74,7 +74,7 @@
   }
   .hero h1 {
     font-family:'Playfair Display', serif;
-    font-size:54px; font-weight:900; line-height:1.0; letter-spacing:-1px;
+    font-size:58px; font-weight:900; line-height:1.0; letter-spacing:-1px;
     color: var(--white); margin-bottom:8px;
   }
   .hero h1 span { color:var(--rose); font-style:italic; }
@@ -99,22 +99,23 @@
   /* ══ NAV ══ */
   .sticky-nav {
     position:sticky; top:0; z-index:100;
-    background: rgba(22,10,38,0.96);
+    background: rgba(22,10,38,0.97);
     backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
     border-bottom: 1px solid rgba(255,92,138,0.25);
-    padding:0 12px; overflow-x:auto; scrollbar-width:none;
-    display:flex; gap:2px;
+    padding:0 8px; overflow-x:auto; scrollbar-width:none;
+    display:flex; gap:4px;
   }
   .sticky-nav::-webkit-scrollbar { display:none; }
   .nav-btn {
-    flex-shrink:0; padding:14px 14px;
-    font-size:12px; font-weight:700; letter-spacing:0.04em;
+    flex-shrink:0; padding:10px 14px;
+    font-size:12px; font-weight:800; letter-spacing:0.05em;
     color: var(--muted);
     background:none; border:none; cursor:pointer;
-    white-space:nowrap; transition:color 0.2s;
+    white-space:nowrap; transition:all 0.2s;
     font-family:'DM Sans', sans-serif;
+    text-transform:uppercase; border-radius:8px; margin:4px 0;
   }
-  .nav-btn.active { color:var(--rose); }
+  .nav-btn.active { color:white; background:var(--rose); }
 
   /* ══ SECTIONS ══ */
   .section {
@@ -190,9 +191,14 @@
 
   .ex-row {
     display:flex; align-items:flex-start; gap:10px;
-    padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+    padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06); cursor:pointer;
   }
   .ex-row:last-child { border-bottom:none; }
+  .ex-chk-s { width:20px; height:20px; border:2px solid rgba(255,92,138,0.35); border-radius:6px; flex-shrink:0; margin-top:3px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:#1A1028; transition:all 0.2s; }
+  .ex-row.done .ex-chk-s { background:var(--rose); border-color:var(--rose); }
+  .ex-row.done .ex-chk-s::after { content:'✓'; }
+  .ex-row.done .ex-name { color:var(--muted); text-decoration:line-through; }
+  .ex-row.done .ex-dot { background:var(--muted); }
   .ex-dot { width:7px; height:7px; border-radius:50%; background:var(--rose); margin-top:8px; flex-shrink:0; }
   .ex-name { font-size:14px; font-weight:700; color:var(--white); }
   .ex-detail { font-size:12px; color:var(--light); margin-top:2px; }
@@ -329,7 +335,32 @@
   .k-text { font-size:14px; color:var(--light); line-height:1.65; }
   .k-text strong { color:var(--white); font-weight:700; }
 
-  /* ══ RULES ══ */
+  /* ══ RÈGLES ACCORDÉON ══ */
+  .regles-acc{background:rgba(255,255,255,0.03);border:1px solid rgba(255,92,138,0.18);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+  .regles-hd{padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .regles-ico{font-size:18px;flex-shrink:0;width:26px;text-align:center;}
+  .regles-nm{font-size:14px;font-weight:700;color:var(--white);flex:1;}
+  .regles-chv{color:var(--muted);font-size:12px;transition:transform 0.3s;}
+  .regles-acc.open .regles-chv{transform:rotate(180deg);}
+  .regles-bd{display:none;padding:4px 16px 14px;border-top:1px solid rgba(255,255,255,0.05);}
+  .regles-acc.open .regles-bd{display:block;}
+  .regles-acc.green{border-color:rgba(112,240,160,0.25);background:rgba(112,240,160,0.04);}
+  .regles-acc.red{border-color:rgba(255,144,144,0.25);background:rgba(255,144,144,0.04);}
+
+  /* ══ ÉTIREMENTS ══ */
+  .str-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,92,138,0.15);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+  .str-hd{padding:13px 15px;display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .str-ico{font-size:20px;flex-shrink:0;}
+  .str-nm{font-size:14px;font-weight:700;color:var(--white);}
+  .str-tbtn{padding:5px 10px;background:rgba(255,92,138,0.15);border:1px solid rgba(255,92,138,0.35);border-radius:8px;font-size:11px;font-weight:800;color:var(--rose-light);cursor:pointer;white-space:nowrap;flex-shrink:0;margin-right:4px;}
+  .str-dur{font-size:11px;color:var(--rose);font-weight:700;flex-shrink:0;margin-right:6px;}
+  .str-chv{color:var(--muted);font-size:12px;transition:transform 0.3s;flex-shrink:0;}
+  .str-card.open .str-chv{transform:rotate(180deg);}
+  .str-bd{display:none;padding:4px 15px 14px;border-top:1px solid rgba(255,255,255,0.05);}
+  .str-card.open .str-bd{display:block;}
+  .str-how{font-size:14px;color:var(--light);line-height:1.7;margin-top:8px;}
+  .str-tip{margin-top:8px;padding:8px 10px;background:rgba(255,92,138,0.07);border-left:2px solid var(--rose);border-radius:0 6px 6px 0;font-size:13px;color:var(--rose-light);font-style:italic;}
+  .yt-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,0,0,0.25);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;color:#FF6060;text-decoration:none;margin:8px 0;}
   .rh { font-size:14px; font-weight:800; margin:22px 0 12px; }
   .rh.g { color:#70F0A0; }
   .rh.r { color:#FF9090; }
@@ -434,7 +465,7 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-badge">✈ Objectif 20 Juin</div>
-  <h1>SARAH<br><span>Trans-<br>formation</span></h1>
+  <h1>SARAH<br><span>Transformation</span></h1>
   <p class="hero-sub">12 semaines · <span id="heroSub">—</span> jours · Tout changer</p>
   <div class="hero-stats">
     <div class="stat-pill"><span class="stat-value">−10 kg</span><span class="stat-label">Objectif</span></div>
@@ -449,17 +480,18 @@
 </section>
 
 <!-- NAV -->
-<nav class="sticky-nav">
+<nav class="sticky-nav" id="mainNav">
   <button class="nav-btn active" onclick="navTo('mois',this)">Phases</button>
   <button class="nav-btn" onclick="navTo('training',this)">Training</button>
+  <button class="nav-btn" onclick="navTo('etirements',this)">Étirements</button>
   <button class="nav-btn" onclick="navTo('hiit',this)">⏱ HIIT</button>
-  <button class="nav-btn" onclick="navTo('tracker',this)">Suivi</button>
+  
   <button class="nav-btn" onclick="navTo('alim',this)">Nutrition</button>
-  <button class="nav-btn" onclick="navTo('courses',this)">🛒 Courses</button>
+  <button class="nav-btn" onclick="navTo('courses',this)">Courses</button>
   <button class="nav-btn" onclick="navTo('suppl',this)">Compléments</button>
   <button class="nav-btn" onclick="navTo('regles',this)">Règles</button>
-  <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
   <button class="nav-btn" onclick="navTo('mental',this)">Mental</button>
+  <button class="nav-btn" onclick="navTo('mesures',this)">Mesures</button>
 </nav>
 
 <!-- PHASES -->
@@ -503,13 +535,13 @@
       <span class="chevron">▼</span>
     </div>
     <div class="t-body">
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Hip Thrust barre</div><div class="ex-detail">Squeeze fort en haut · pied à plat</div></div><div class="ex-badge">4×12</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Squat gobelet</div><div class="ex-detail">Dos droit · genoux dans l'axe</div></div><div class="ex-badge">4×12</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fente bulgare haltères</div><div class="ex-detail">Amplitude maximale</div></div><div class="ex-badge">3×10/j</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg press pieds hauts</div><div class="ex-detail">Plus de fessiers</div></div><div class="ex-badge">3×15</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg curl couché</div><div class="ex-detail">Contrôle la descente</div></div><div class="ex-badge">3×15</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Abducteur machine</div><div class="ex-detail">Lent et contrôlé</div></div><div class="ex-badge">3×20</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Gainage planche + relevé bassin</div><div class="ex-detail">Core + fessiers</div></div><div class="ex-badge">3×45s+15</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Hip Thrust barre</div><div class="ex-detail">Squeeze fort en haut · pied à plat</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Squat gobelet</div><div class="ex-detail">Dos droit · genoux dans l'axe</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fente bulgare haltères</div><div class="ex-detail">Amplitude maximale</div></div><div class="ex-badge">3×10/j</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg press pieds hauts</div><div class="ex-detail">Plus de fessiers</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Leg curl couché</div><div class="ex-detail">Contrôle la descente</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Abducteur machine</div><div class="ex-detail">Lent et contrôlé</div></div><div class="ex-badge">3×20</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Gainage planche + relevé bassin</div><div class="ex-detail">Core + fessiers</div></div><div class="ex-badge">3×45s+15</div></div>
       <div class="fin-note">🏃 Finition : 15 min stepmill / escalier</div>
     </div>
   </div>
@@ -530,13 +562,13 @@
       <span class="chevron">▼</span>
     </div>
     <div class="t-body">
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Tirage horizontal câble</div><div class="ex-detail">Serrer omoplates · contrôle</div></div><div class="ex-badge">4×12</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Rowing haltère unilatéral</div><div class="ex-detail">Dos plat · coude proche</div></div><div class="ex-badge">3×12/c</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Curl biceps haltères</div><div class="ex-detail">Supination en haut</div></div><div class="ex-badge">3×12</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Triceps câble corde</div><div class="ex-detail">Coudes fixes · étirement</div></div><div class="ex-badge">3×15</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Russian Twist lesté</div><div class="ex-detail">Pieds levés · rotation complète</div></div><div class="ex-badge">3×20</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Relevé de jambes suspendu</div><div class="ex-detail">Bas du ventre</div></div><div class="ex-badge">3×12</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Planche latérale</div><div class="ex-detail">Obliques · taille</div></div><div class="ex-badge">3×30s/c</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Tirage horizontal câble</div><div class="ex-detail">Serrer omoplates · contrôle</div></div><div class="ex-badge">4×12</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Rowing haltère unilatéral</div><div class="ex-detail">Dos plat · coude proche</div></div><div class="ex-badge">3×12/c</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Curl biceps haltères</div><div class="ex-detail">Supination en haut</div></div><div class="ex-badge">3×12</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Triceps câble corde</div><div class="ex-detail">Coudes fixes · étirement</div></div><div class="ex-badge">3×15</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Russian Twist lesté</div><div class="ex-detail">Pieds levés · rotation complète</div></div><div class="ex-badge">3×20</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Relevé de jambes suspendu</div><div class="ex-detail">Bas du ventre</div></div><div class="ex-badge">3×12</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Planche latérale</div><div class="ex-detail">Obliques · taille</div></div><div class="ex-badge">3×30s/c</div></div>
       <div class="fin-note">🏃 Finition : 10 min elliptique niveau 8</div>
     </div>
   </div>
@@ -558,14 +590,14 @@
     </div>
     <div class="t-body">
       <p style="font-size:12px;color:var(--light);padding:10px 0 4px;font-weight:600;">40s effort / 20s repos · 4 tours · 2 min repos entre chaque tour</p>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Burpees</div><div class="ex-detail">Corps entier · cardio intense</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Jump squats</div><div class="ex-detail">Fessiers + cuisses + explosivité</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Mountain climbers</div><div class="ex-detail">Ventre + cardio</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fentes sautées</div><div class="ex-detail">Cuisses + fessiers · brûle beaucoup</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Pompes adaptées</div><div class="ex-detail">Bras + poitrine + gainage</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">High knees</div><div class="ex-detail">Cardio maximal · brûle graisse</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Plank shoulder tap</div><div class="ex-detail">Gainage + stabilité</div></div><div class="ex-badge">40s/20s</div></div>
-      <div class="ex-row"><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Kick-backs fessiers</div><div class="ex-detail">Fessiers ciblés</div></div><div class="ex-badge">40s/c</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Burpees</div><div class="ex-detail">Corps entier · cardio intense</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Jump squats</div><div class="ex-detail">Fessiers + cuisses + explosivité</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Mountain climbers</div><div class="ex-detail">Ventre + cardio</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Fentes sautées</div><div class="ex-detail">Cuisses + fessiers · brûle beaucoup</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Pompes adaptées</div><div class="ex-detail">Bras + poitrine + gainage</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">High knees</div><div class="ex-detail">Cardio maximal · brûle graisse</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Plank shoulder tap</div><div class="ex-detail">Gainage + stabilité</div></div><div class="ex-badge">40s/20s</div></div>
+      <div class="ex-row" onclick="toggleExS(this,event)"><div class="ex-chk-s"></div><div class="ex-dot"></div><div style="flex:1"><div class="ex-name">Kick-backs fessiers</div><div class="ex-detail">Fessiers ciblés</div></div><div class="ex-badge">40s/c</div></div>
     </div>
   </div>
 
@@ -586,9 +618,70 @@
     </div>
     <div class="t-body"><p class="t-text">Marche 30-45 min · yoga ou étirements · foam roller. Récupération obligatoire. Vélo ou footing léger possible.</p></div>
   </div>
+  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,92,138,0.20);border-radius:14px;padding:16px;margin-top:8px;">
+    <div style="font-size:10px;color:var(--rose);font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">✓ Séances cochées cette semaine</div>
+    <div id="seancesTraining"></div>
+    <div id="seanceCountT" style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px;font-weight:700;"></div>
+  </div>
 </section>
 
-<!-- HIIT TIMER -->
+<!-- ÉTIREMENTS -->
+<section class="section" id="etirements">
+  <div class="section-tag">Soir · 10-15 min</div>
+  <h2 class="section-title">Étirements<br>du soir</h2>
+  <p style="font-size:14px;color:var(--light);margin-bottom:20px;line-height:1.7;">Pour rester souple, réduire les courbatures et prévenir les blessures. À faire chaque soir après l'effort.</p>
+
+  <!-- Timer étirement -->
+  <div style="background:rgba(255,92,138,0.07);border:1px solid rgba(255,92,138,0.25);border-radius:20px;padding:20px 18px;margin-bottom:18px;text-align:center;">
+    <div id="strExName" style="font-size:11px;font-weight:800;color:var(--rose);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;">Sélectionne un étirement</div>
+    <div id="strTime" style="font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:var(--white);line-height:1;">—</div>
+    <div id="strPhase" style="font-size:14px;font-weight:700;color:var(--light);margin:6px 0 14px;">appuie sur ▶ pour démarrer</div>
+    <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin:0 auto 16px;max-width:200px;">
+      <div id="strBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:3px;transition:width 0.5s linear;"></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;max-width:260px;margin:0 auto;">
+      <button id="strBtn" onclick="strToggle()" style="flex:2;padding:13px;background:linear-gradient(135deg,var(--rose),#AA0040);color:white;border:none;border-radius:13px;font-size:15px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;">▶ Démarrer</button>
+      <button onclick="strReset()" style="flex:1;padding:13px;background:rgba(255,255,255,0.07);color:var(--white);border:none;border-radius:13px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺</button>
+    </div>
+    <div id="strSide" style="font-size:12px;color:var(--muted);margin-top:10px;font-weight:600;"></div>
+  </div>
+
+  <!-- Stretch cards -->
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🍑</div><div style="flex:1"><div class="str-nm">Fessiers & Piriforme — Figure 4</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Figure 4 piriformis stretch"</div></div><button class="str-tbtn" onclick="strSel('Fessiers & Piriforme',60,true);event.stopPropagation();">▶ 60s</button><span class="str-dur">2×60s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=figure+4+piriformis+stretch" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">Allongée sur le dos, cheville droite sur genou gauche en "4". Tire la cuisse gauche vers toi. Sens le fessier s'ouvrir. Essentiel après hip thrust et squat.</div><div class="str-tip">Prévient les douleurs de hanches et le syndrome de l'essuie-glace.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🦵</div><div style="flex:1"><div class="str-nm">Ischios-jambiers</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Seated hamstring stretch"</div></div><button class="str-tbtn" onclick="strSel('Ischios-jambiers',60,true);event.stopPropagation();">▶ 60s</button><span class="str-dur">2×60s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=seated+hamstring+stretch+floor" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">Assise au sol, jambe tendue. Penche-toi vers l'avant depuis les hanches (pas le dos), mains vers le pied. Dos plat — essentiel.</div><div class="str-tip">Ischios courts = lombalgies. Indispensable après le footing et le leg curl.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🌺</div><div style="flex:1"><div class="str-nm">Psoas & Fléchisseurs de hanche</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Hip flexor low lunge stretch"</div></div><button class="str-tbtn" onclick="strSel('Psoas & Fléchisseurs',60,true);event.stopPropagation();">▶ 60s</button><span class="str-dur">2×60s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=hip+flexor+low+lunge+stretch" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">Fente basse : genou arrière au sol, pied avant à 90°. Pousse les hanches vers l'avant et le bas. Bras levés au ciel pour allonger davantage.</div><div class="str-tip">La position assise raccourcit le psoas. Raccourci = bascule du bassin = mal de dos.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🧘‍♀️</div><div style="flex:1"><div class="str-nm">Quadriceps</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Standing quad stretch"</div></div><button class="str-tbtn" onclick="strSel('Quadriceps',45,true);event.stopPropagation();">▶ 45s</button><span class="str-dur">2×45s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=standing+quad+stretch+women" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">Debout, attrape ton pied arrière vers les fessiers. Genoux serrés. Pour aller plus loin : fente basse, genou au sol, recule le pied, incline le buste.</div><div class="str-tip">Après squat, fente bulgare et jump squat — incontournable.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🦶</div><div style="flex:1"><div class="str-nm">Mollets & Tendon d'Achille</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Calf stretch wall gastrocnemius"</div></div><button class="str-tbtn" onclick="strSel('Mollets',60,true);event.stopPropagation();">▶ 60s</button><span class="str-dur">2×60s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=calf+stretch+wall+achilles+women" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">Contre un mur : 1) Jambe tendue → haut du mollet. 2) Genou légèrement fléchi → soléaire + Achille. Faire les deux variantes.</div><div class="str-tip">Essentiel après le footing et le HIIT. Prévient 90% des tendinites.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">🌀</div><div style="flex:1"><div class="str-nm">Colonne — Cat & Cow</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Cat cow yoga spine"</div></div><button class="str-tbtn" onclick="strSel('Cat & Cow',0,false);event.stopPropagation();">10 reps</button><span class="str-dur">2×10</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=cat+cow+yoga+spine+mobility" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">À quatre pattes : inspiration → creuse le dos, regarde devant (Cow). Expiration → arrondi le dos, menton vers la poitrine (Cat). Lent, vertèbre par vertèbre. Termine par Child's pose 60s.</div><div class="str-tip">Décompresse la colonne après une longue journée ou une séance intensive.</div></div>
+  </div>
+
+  <div class="str-card" onclick="toggleStr(this)">
+    <div class="str-hd"><div class="str-ico">💆‍♀️</div><div style="flex:1"><div class="str-nm">Épaules & Nuque</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">🔍 "Shoulder cross body neck stretch"</div></div><button class="str-tbtn" onclick="strSel('Épaules & Nuque',40,true);event.stopPropagation();">▶ 40s</button><span class="str-dur">2×40s/c</span><span class="str-chv">▼</span></div>
+    <div class="str-bd"><a href="https://www.youtube.com/results?search_query=shoulder+cross+body+neck+stretch+women" target="_blank" class="yt-btn">▶ Voir sur YouTube</a><div class="str-how">1) Bras tendu passé devant l'autre, pression du coude. 2) Oreille vers épaule, main légère sur la tête — jamais forcer sur la nuque.</div><div class="str-tip">Après rowing, tirage et body pump. Détend les trapèzes et prévient les cervicales.</div></div>
+  </div>
+</section>
 <section class="section" id="hiit">
   <div class="section-tag">Séance 5</div>
   <h2 class="section-title">⏱ Timer HIIT</h2>
@@ -618,35 +711,7 @@
 </section>
 
 <!-- TRACKER -->
-<section class="section" id="tracker">
-  <div class="section-tag">Suivi personnalisé</div>
-  <h2 class="section-title">Tracker<br>hebdomadaire</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:18px;font-weight:500;">Coche tes séances de la semaine ✓</p>
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🍑</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 1 — Fessiers & Cuisses</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🎵</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 2 — Body Pump</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">💪</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 3 — Dos, Bras & Taille</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🏃‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 4 — Footing</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🔥</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 5 — HIIT Circuit</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🚴‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Séance 6 — RPM / Spinning</div></div>
-    </div>
-    <div onclick="toggleSeance(this)" style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;cursor:pointer;transition:all 0.2s;">
-      <div class="seance-check">🧘‍♀️</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--white);">Jour 7 — Récupération</div></div>
-    </div>
-  </div>
-  <div id="seanceCount" style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:600;">0 / 6 séances cette semaine</div>
-</section>
+
 
 <!-- NUTRITION -->
 <section class="section" id="alim">
@@ -694,24 +759,56 @@
 
 <!-- RÈGLES -->
 <section class="section" id="regles">
-  <div class="section-tag">Règles d'or</div>
+  <div class="section-tag">Habitudes clés</div>
   <h2 class="section-title">À faire &<br>À éviter</h2>
-  <div class="rh g">✅ À faire</div>
-  <div class="r-row"><div class="r-icon">⚡</div><div><div class="r-name">Fer bisglycinate chaque matin</div><div class="r-desc">À jeun au réveil. Ferritine +40% en 6 semaines.</div></div></div>
-  <div class="r-row"><div class="r-icon">👟</div><div><div class="r-name">8 000-10 000 pas/jour</div><div class="r-desc">250-350 kcal supplémentaires brûlées par jour.</div></div></div>
-  <div class="r-row"><div class="r-icon">💧</div><div><div class="r-name">2L d'eau minimum/jour</div><div class="r-desc">Métabolisme +24% avec 500ml le matin.</div></div></div>
-  <div class="r-row"><div class="r-icon">😴</div><div><div class="r-name">7-8h de sommeil</div><div class="r-desc">70% de la GH sécrétée la nuit. Nuit courte = +28% de faim le lendemain.</div></div></div>
-  <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser 1x/semaine</div><div class="r-desc">Dimanche matin à jeun. Évite l'anxiété des fluctuations.</div></div></div>
-  <div class="r-row"><div class="r-icon">🥩</div><div><div class="r-name">Protéines à chaque repas</div><div class="r-desc">130g/j. Effet thermique = 150 kcal brûlées à la digestion.</div></div></div>
-  <div class="r-row"><div class="r-icon">🏋️</div><div><div class="r-name">Musculation 2x/semaine min</div><div class="r-desc">Les muscles brûlent 24-48h après la séance.</div></div></div>
-  <div class="r-row"><div class="r-icon">🌿</div><div><div class="r-name">Foam roller après séance</div><div class="r-desc">Réduit les courbatures de 40%.</div></div></div>
-  <div class="rh r">❌ À éviter</div>
-  <div class="r-row"><div class="r-icon">☕</div><div><div class="r-name">Café/thé avec le fer</div><div class="r-desc">Absorption du fer −60-80%. Attendre 2h minimum.</div></div></div>
-  <div class="r-row"><div class="r-icon">🍌</div><div><div class="r-name">Glucides rapides le soir</div><div class="r-desc">IG élevé + pas d'activité = stockage direct en graisse abdominale.</div></div></div>
-  <div class="r-row"><div class="r-icon">📺</div><div><div class="r-name">Manger devant un écran</div><div class="r-desc">On mange en moyenne 30% de plus en regardant la télé.</div></div></div>
-  <div class="r-row"><div class="r-icon">🍷</div><div><div class="r-name">Alcool fréquent</div><div class="r-desc">Stoppe la lipolyse 24-48h, perturbe la GH et le sommeil.</div></div></div>
-  <div class="r-row"><div class="r-icon">🚫</div><div><div class="r-name">Faire uniquement du cardio</div><div class="r-desc">Sans muscu : corps mou. Perte musculaire = métabolisme bas.</div></div></div>
-  <div class="r-row"><div class="r-icon">⚖️</div><div><div class="r-name">Se peser tous les jours</div><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
+
+  <div style="font-size:12px;font-weight:800;color:#70F0A0;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">✅ À faire absolument</div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">⚡</div><div class="regles-nm">Fer bisglycinate chaque matin</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">À jeun au réveil. Ferritine +40% en 6 semaines. Priorité absolue.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">👟</div><div class="regles-nm">8 000-10 000 pas/jour</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">250-350 kcal supplémentaires brûlées par jour. Activer le compteur.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">💧</div><div class="regles-nm">2L d'eau minimum/jour</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Métabolisme +24% avec 500ml le matin. Eau plate, tisanes, eau gazeuse.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">😴</div><div class="regles-nm">7-8h de sommeil</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">70% de la GH sécrétée la nuit. Nuit courte = +28% de faim le lendemain.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">⚖️</div><div class="regles-nm">Se peser 1x/semaine</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Dimanche matin à jeun. Évite l'anxiété des fluctuations quotidiennes.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🥩</div><div class="regles-nm">Protéines à chaque repas</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">130g/j. Effet thermique = 150 kcal brûlées à la digestion. Satiété maximale.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🏋️</div><div class="regles-nm">Musculation 2x/semaine min</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Les muscles brûlent des calories 24-48h après la séance. Moteur métabolique.</div></div></div>
+  <div class="regles-acc green" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🌿</div><div class="regles-nm">Foam roller après séance</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Réduit les courbatures de 40%. Fessiers, ischios, mollets, IT band.</div></div></div>
+
+  <div style="font-size:12px;font-weight:800;color:#FF9090;letter-spacing:0.1em;text-transform:uppercase;margin:20px 0 10px;">❌ À éviter</div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">☕</div><div class="regles-nm">Café/thé avec le fer</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Absorption du fer −60-80%. Attendre 2h minimum après la prise de fer.</div></div></div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🍌</div><div class="regles-nm">Glucides rapides le soir</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">IG élevé + pas d'activité = stockage direct en graisse abdominale.</div></div></div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">📺</div><div class="regles-nm">Manger devant un écran</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">On mange en moyenne 30% de plus en regardant la télé.</div></div></div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🍷</div><div class="regles-nm">Alcool fréquent</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Stoppe la lipolyse 24-48h, perturbe la GH et le sommeil.</div></div></div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">🚫</div><div class="regles-nm">Faire uniquement du cardio</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Sans muscu : corps mou. Perte musculaire = métabolisme bas.</div></div></div>
+  <div class="regles-acc red" onclick="this.classList.toggle('open')"><div class="regles-hd"><div class="regles-ico">⚖️</div><div class="regles-nm">Se peser tous les jours</div><span class="regles-chv">▼</span></div><div class="regles-bd"><div class="r-desc">Fluctuations normales de 1-3 kg. Crée une relation toxique au poids.</div></div></div>
+</section>
+
+<!-- LISTE COURSES -->
+<section class="section" id="courses">
+  <div class="section-tag">Semaine type</div>
+  <h2 class="section-title">🛒 Liste<br>de courses</h2>
+  <p style="font-size:13px;color:var(--light);margin-bottom:20px;font-weight:500;">Coche ce que tu as déjà ou ce que tu achètes ✓</p>
+  <div style="display:flex;gap:10px;margin-bottom:20px;">
+    <button onclick="resetCourses()" style="flex:1;padding:12px;background:rgba(255,255,255,0.08);color:var(--light);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Tout réinitialiser</button>
+    <button onclick="checkAllCourses()" style="flex:1;padding:12px;background:rgba(255,92,138,0.15);color:var(--rose-light);border:1px solid rgba(255,92,138,0.30);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">✓ Tout cocher</button>
+  </div>
+  <div id="coursesList"></div>
+</section>
+
+<!-- MENTAL -->
+<section class="section" id="mental">
+  <div class="section-tag">Mindset</div>
+  <h2 class="section-title">Mental &<br>Motivation</h2>
+  <div class="q-card"><div class="q-text">Chaque séance me rapproche de la version de moi que je veux être.</div><div class="q-ctx">À se dire avant chaque entraînement</div></div>
+  <div class="q-card"><div class="q-text">Je mange pour nourrir mon corps, pas pour punir mon âme.</div><div class="q-ctx">Face à la culpabilité alimentaire</div></div>
+  <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
+  <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
+  <div class="sub-h">Les 7 clés mentales</div>
+  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
+  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
+  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
+  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
+  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
+  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
+  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
 </section>
 
 <!-- MESURES -->
@@ -745,36 +842,6 @@
   <div id="mesureHistory"></div>
 </section>
 
-<!-- LISTE COURSES -->
-<section class="section" id="courses">
-  <div class="section-tag">Semaine type</div>
-  <h2 class="section-title">🛒 Liste<br>de courses</h2>
-  <p style="font-size:13px;color:var(--light);margin-bottom:20px;font-weight:500;">Coche ce que tu as déjà ou ce que tu achètes ✓</p>
-  <div style="display:flex;gap:10px;margin-bottom:20px;">
-    <button onclick="resetCourses()" style="flex:1;padding:12px;background:rgba(255,255,255,0.08);color:var(--light);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">↺ Tout réinitialiser</button>
-    <button onclick="checkAllCourses()" style="flex:1;padding:12px;background:rgba(255,92,138,0.15);color:var(--rose-light);border:1px solid rgba(255,92,138,0.30);border-radius:12px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">✓ Tout cocher</button>
-  </div>
-  <div id="coursesList"></div>
-</section>
-
-<!-- MENTAL -->
-<section class="section" id="mental">
-  <div class="section-tag">Mindset</div>
-  <h2 class="section-title">Mental &<br>Motivation</h2>
-  <div class="q-card"><div class="q-text">Chaque séance me rapproche de la version de moi que je veux être.</div><div class="q-ctx">À se dire avant chaque entraînement</div></div>
-  <div class="q-card"><div class="q-text">Je mange pour nourrir mon corps, pas pour punir mon âme.</div><div class="q-ctx">Face à la culpabilité alimentaire</div></div>
-  <div class="q-card"><div class="q-text">Mon corps change même quand la balance ne bouge pas.</div><div class="q-ctx">Pendant les plateaux</div></div>
-  <div class="q-card"><div class="q-text">Le 20 juin, je serai fière de chaque effort que j'ai fait aujourd'hui.</div><div class="q-ctx">L'ancre du voyage ✈</div></div>
-  <div class="sub-h">Les 7 clés mentales</div>
-  <div class="k-row"><div class="k-num">1</div><div class="k-text"><strong>Le progrès n'est pas linéaire.</strong> Tu auras des semaines à −1,5 kg et des semaines à 0. Sur 12 semaines, la tendance est toujours descendante. Ne juge pas une semaine, juge un mois.</div></div>
-  <div class="k-row"><div class="k-num">2</div><div class="k-text"><strong>Un écart ≠ un échec.</strong> Un repas de trop ne fait pas grossir. Ce qui compte c'est la moyenne sur la semaine.</div></div>
-  <div class="k-row"><div class="k-num">3</div><div class="k-text"><strong>Compare-toi à toi-même.</strong> Tes photos d'il y a 4 semaines, tes anciennes mesures. Pas aux autres, pas aux réseaux sociaux.</div></div>
-  <div class="k-row"><div class="k-num">4</div><div class="k-text"><strong>La régularité bat l'intensité.</strong> 6 séances à 80% valent mieux que 3 à 100% et 3 ratées. Présente-toi, même quand t'as pas envie.</div></div>
-  <div class="k-row"><div class="k-num">5</div><div class="k-text"><strong>Le voyage est ton ancre.</strong> Quand tu veux lâcher, visualise-toi le 20 juin. Dans tes vêtements préférés, avec ton énergie retrouvée.</div></div>
-  <div class="k-row"><div class="k-num">6</div><div class="k-text"><strong>Célèbre les non-victoires sur la balance.</strong> Tu as fait 6 séances ? Célèbre. Tu as bu 2L d'eau ? Célèbre.</div></div>
-  <div class="k-row"><div class="k-num">7</div><div class="k-text"><strong>Tu n'es pas seule.</strong> Tu as un plan, tu as les bons outils. La transformation physique commence dans la tête.</div></div>
-</section>
-
 <!-- FOOTER -->
 <div class="footer">
   <div class="cd-block">
@@ -786,9 +853,10 @@
   <div class="footer-sub">12 semaines. <span id="footerDays">92</span> jours. 504 heures de choix quotidiens qui vont redéfinir ta relation avec ton corps, ton énergie et ta confiance.</div>
 
   <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);">
-    <div style="font-size:12px;color:var(--rose-light);font-weight:700;margin-bottom:8px;">© 2026 — Programme Sarah</div>
-    <div style="font-size:11px;color:var(--muted);line-height:1.7;">Ce programme (plan alimentaire, entraînements, compléments, suivi) a été créé et conçu par <strong style="color:var(--light);">Yanis Bensaadi</strong> — Toute reproduction, copie, distribution ou utilisation commerciale de ce contenu, même partielle, sans autorisation écrite préalable est strictement interdite. Ce programme est destiné à un usage personnel et non commercial. Contenu protégé — Tous droits réservés.</div>
-    <div style="margin-top:12px;font-size:11px;color:var(--muted);">📩 Contact : <span style="color:var(--rose-light);">yanisb&#46;lu&#64;gmail&#46;com</span></div>
+    <div style="font-size:13px;color:var(--rose-light);font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">© 2026 — Yanis Bensaadi</div>
+    <div style="font-size:12px;color:var(--light);line-height:1.8;margin-bottom:10px;">Ce programme a été entièrement créé et conçu par <strong style="color:var(--white);">Yanis Bensaadi</strong> pour Sarah.</div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.75;">Toute reproduction, copie partielle ou totale, distribution, adaptation ou utilisation commerciale de ce contenu, sous quelque forme que ce soit, sans autorisation écrite préalable de l'auteur est <strong style="color:var(--light);">strictement interdite</strong>.<br><br>Ce programme est destiné à un usage strictement personnel et non commercial. Il ne constitue pas un avis médical ou diététique professionnel. Consultez un professionnel de santé avant de modifier votre alimentation ou programme sportif.<br><br>Contenu protégé — Tous droits réservés.</div>
+    <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;color:var(--muted);">📩 Contact & autorisation : <span style="color:var(--rose-light);">yanisb&#46;lu&#64;gmail&#46;com</span></div>
   </div>
 </div>
 
@@ -866,6 +934,7 @@ document.getElementById('foodDays').innerHTML = fd.map(d=>`
   </div>`).join('');
 
 function toggleT(el){el.classList.toggle('open')}
+function toggleExS(el, event){ event.stopPropagation(); el.classList.toggle('done'); }
 function chk(el){el.classList.toggle('on');el.textContent=el.classList.contains('on')?'✓':'';}
 
 // Weight
@@ -918,13 +987,146 @@ function navTo(id,btn){
   btn.classList.add('active');
 }
 
-function toggleSeance(el){
-  el.classList.toggle('seance-done');
-  const done = document.querySelectorAll('.seance-done').length;
-  const txt = done >= 6 ? `${done} / 6 séances ✅ Objectif atteint !` : `${done} / 6 séances cette semaine`;
-  document.getElementById('seanceCount').textContent = txt;
-  document.getElementById('seanceCount').style.color = done >= 6 ? 'var(--rose-light)' : 'var(--muted)';
+// ── SÉANCES TRAINING checklist
+const seancesData = [
+  {ico:'🍑', nm:'Séance 1 — Fessiers & Cuisses'},
+  {ico:'🎵', nm:'Séance 2 — Body Pump'},
+  {ico:'💪', nm:'Séance 3 — Dos, Bras & Taille'},
+  {ico:'🏃‍♀️', nm:'Séance 4 — Footing'},
+  {ico:'🔥', nm:'Séance 5 — HIIT Circuit'},
+  {ico:'🚴‍♀️', nm:'Séance 6 — RPM / Spinning'},
+  {ico:'🧘‍♀️', nm:'Jour 7 — Récupération'},
+];
+
+function renderSeancesTraining(){
+  const el = document.getElementById('seancesTraining');
+  if(!el) return;
+  el.innerHTML = seancesData.map((s,i)=>`
+    <div onclick="toggleSeanceT(this)" style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;cursor:pointer;transition:all 0.2s;margin-bottom:7px;" id="st${i}">
+      <span style="font-size:18px;">${s.ico}</span>
+      <span style="font-size:13px;font-weight:700;color:var(--white);flex:1;">${s.nm}</span>
+      <div style="width:22px;height:22px;border:2px solid rgba(255,255,255,0.20);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#1A1028;transition:all 0.2s;" class="sc-chk"></div>
+    </div>`).join('');
 }
+
+function toggleSeanceT(el){
+  el.classList.toggle('seance-done');
+  const chk = el.querySelector('.sc-chk');
+  const done = el.classList.contains('seance-done');
+  if(done){
+    el.style.background='rgba(255,92,138,0.10)';
+    el.style.borderColor='rgba(255,92,138,0.30)';
+    chk.style.background='var(--rose)';
+    chk.style.borderColor='var(--rose)';
+    chk.textContent='✓';
+  } else {
+    el.style.background='rgba(255,255,255,0.04)';
+    el.style.borderColor='rgba(255,255,255,0.08)';
+    chk.style.background='transparent';
+    chk.style.borderColor='rgba(255,255,255,0.20)';
+    chk.textContent='';
+  }
+  const total = document.querySelectorAll('#seancesTraining .seance-done').length;
+  const cnt = document.getElementById('seanceCountT');
+  if(cnt) cnt.textContent = total>=6 ? `${total}/6 ✅ Semaine parfaite !` : `${total}/6 séances cette semaine`;
+  if(cnt) cnt.style.color = total>=6 ? 'var(--rose-light)' : 'var(--muted)';
+}
+
+renderSeancesTraining();
+
+// ── STRETCH TIMER
+let strRunning=false,strInterval=null,strSecs=0,strTotal=0,strName='',strBilateral=false,strSide=1;
+
+function strSel(name,secs,bilateral){
+  clearInterval(strInterval);strRunning=false;
+  strName=name;strTotal=secs;strSecs=secs;strBilateral=bilateral;strSide=1;
+  document.getElementById('strExName').textContent=name;
+  document.getElementById('strTime').textContent=secs||'—';
+  document.getElementById('strTime').style.color='var(--white)';
+  document.getElementById('strBar').style.width='0%';
+  document.getElementById('strBtn').textContent='▶ Démarrer';
+  document.getElementById('strPhase').textContent=bilateral?'Côté gauche · prêt ?':'Prêt ?';
+  document.getElementById('strSide').textContent='';
+}
+
+function strToggle(){
+  if(!strName||!strTotal)return;
+  if(!strRunning){
+    strRunning=true;
+    document.getElementById('strBtn').textContent='⏸ Pause';
+    strInterval=setInterval(strTick,1000);
+  } else {
+    strRunning=false;
+    document.getElementById('strBtn').textContent='▶ Reprendre';
+    clearInterval(strInterval);
+  }
+}
+
+function strTick(){
+  strSecs--;
+  const pct=Math.round(((strTotal-strSecs)/strTotal)*100);
+  document.getElementById('strTime').textContent=strSecs>0?strSecs:'✓';
+  document.getElementById('strBar').style.width=pct+'%';
+  if(strSecs<=3&&strSecs>0) document.getElementById('strTime').style.color='var(--rose)';
+  if(strSecs<=0){
+    clearInterval(strInterval);strRunning=false;
+    if(navigator.vibrate)navigator.vibrate([150,80,150]);
+    if(strBilateral&&strSide===1){
+      strSide=2;strSecs=strTotal;
+      document.getElementById('strTime').textContent=strTotal;
+      document.getElementById('strTime').style.color='var(--white)';
+      document.getElementById('strBar').style.width='0%';
+      document.getElementById('strPhase').textContent='🔄 Côté droit maintenant !';
+      document.getElementById('strBtn').textContent='▶ Côté droit';
+    } else {
+      document.getElementById('strPhase').textContent='✅ Parfait !';
+      document.getElementById('strSide').textContent=strBilateral?'Les 2 côtés faits 💪':'';
+      document.getElementById('strBtn').textContent='↺ Recommencer';
+      document.getElementById('strTime').style.color='#70F0A0';
+      if(navigator.vibrate)navigator.vibrate([200,100,200,100,400]);
+    }
+  } else {
+    document.getElementById('strPhase').textContent=strBilateral?(strSide===1?'Côté gauche':'Côté droit'):'';
+  }
+}
+
+function strReset(){
+  clearInterval(strInterval);strRunning=false;
+  if(strTotal>0){
+    strSecs=strTotal;strSide=1;
+    document.getElementById('strTime').textContent=strTotal;
+    document.getElementById('strTime').style.color='var(--white)';
+    document.getElementById('strBar').style.width='0%';
+    document.getElementById('strPhase').textContent=strBilateral?'Côté gauche · prêt ?':'Prêt ?';
+    document.getElementById('strBtn').textContent='▶ Démarrer';
+    document.getElementById('strSide').textContent='';
+  }
+}
+
+function toggleStr(el){el.classList.toggle('open');}
+
+// ── NAV SCROLL TRACKING
+const sectionIds = ['mois','training','etirements','hiit','alim','courses','suppl','regles','mental','mesures'];
+const navBtns = document.querySelectorAll('.nav-btn');
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navBtns.forEach(b=>b.classList.remove('active'));
+      const btn = document.querySelector(`.nav-btn[onclick*="${id}"]`);
+      if(btn){
+        btn.classList.add('active');
+        btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+      }
+    }
+  });
+},{threshold:0.3, rootMargin:'-60px 0px -40% 0px'});
+
+sectionIds.forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) observer.observe(el);
+});
 
 function saveTout(){
   // Save weight
@@ -988,19 +1190,32 @@ const coursesData = [
 let coursesState = JSON.parse(localStorage.getItem('courses_state')||'{}');
 
 function renderCourses(){
+  const colors = [
+    {bg:'rgba(255,92,138,0.06)',border:'rgba(255,92,138,0.22)',title:'#FF8FAD'},
+    {bg:'rgba(80,220,120,0.05)',border:'rgba(80,220,120,0.20)',title:'#50DC78'},
+    {bg:'rgba(80,160,255,0.05)',border:'rgba(80,160,255,0.20)',title:'#60A8FF'},
+    {bg:'rgba(255,100,100,0.05)',border:'rgba(255,100,100,0.20)',title:'#FF8080'},
+    {bg:'rgba(201,168,76,0.06)',border:'rgba(201,168,76,0.22)',title:'#E8C56A'},
+    {bg:'rgba(200,200,255,0.05)',border:'rgba(200,200,255,0.18)',title:'#C0C8FF'},
+    {bg:'rgba(200,80,255,0.05)',border:'rgba(200,80,255,0.18)',title:'#D080FF'},
+    {bg:'rgba(255,200,80,0.05)',border:'rgba(255,200,80,0.20)',title:'#FFD060'},
+  ];
   const c = document.getElementById('coursesList');
-  c.innerHTML = coursesData.map((cat, ci)=>`
-    <div style="margin-bottom:20px;">
-      <div style="font-size:12px;font-weight:800;color:var(--rose);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">${cat.cat}</div>
+  c.innerHTML = coursesData.map((cat, ci)=>{
+    const col = colors[ci] || colors[0];
+    return `
+    <div style="background:${col.bg};border:1px solid ${col.border};border-radius:14px;padding:14px;margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:800;color:${col.title};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">${cat.cat}</div>
       ${cat.items.map((item,ii)=>{
         const key=`${ci}-${ii}`;
         const done = coursesState[key];
-        return `<div onclick="toggleCourse('${key}',this)" style="display:flex;align-items:center;gap:12px;padding:10px 14px;margin-bottom:6px;background:${done?'rgba(255,92,138,0.12)':'rgba(255,255,255,0.05)'};border:1px solid ${done?'rgba(255,92,138,0.35)':'rgba(255,255,255,0.08)'};border-radius:12px;cursor:pointer;transition:all 0.2s;" data-key="${key}">
-          <div style="width:22px;height:22px;border-radius:7px;border:2px solid ${done?'var(--rose)':'rgba(255,255,255,0.25)'};background:${done?'var(--rose)':'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:white;">${done?'✓':''}</div>
-          <span style="font-size:14px;font-weight:${done?'600':'500'};color:${done?'var(--muted)':'var(--white)'};text-decoration:${done?'line-through':'none'};">${item}</span>
+        return `<div onclick="toggleCourse('${key}',this)" style="display:flex;align-items:center;gap:12px;padding:9px 12px;margin-bottom:5px;background:${done?'rgba(255,255,255,0.06)':'rgba(255,255,255,0.03)'};border:1px solid ${done?col.border:'rgba(255,255,255,0.06)'};border-radius:10px;cursor:pointer;transition:all 0.2s;">
+          <div style="width:20px;height:20px;border-radius:6px;border:2px solid ${done?col.title:'rgba(255,255,255,0.22)'};background:${done?col.title:'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#1A1028;">${done?'✓':''}</div>
+          <span style="font-size:13px;font-weight:600;color:${done?'rgba(255,255,255,0.4)':'var(--white)'};text-decoration:${done?'line-through':'none'};flex:1;">${item}</span>
         </div>`;
       }).join('')}
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function toggleCourse(key, el){
@@ -1024,12 +1239,16 @@ renderCourses();
 updW(); rendH(); updCd(); updPb();
 setInterval(updCd,30000);
 
-// ── PROTECTION
+// ── PROTECTION RENFORCÉE
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
-  if((e.ctrlKey||e.metaKey) && ['u','s','a'].includes(e.key.toLowerCase())) e.preventDefault();
-  if(e.key==='F12') e.preventDefault();
+  if((e.ctrlKey||e.metaKey) && ['u','s','a','c','p','i'].includes(e.key.toLowerCase())) e.preventDefault();
+  if(e.key==='F12'||e.key==='PrintScreen') e.preventDefault();
 });
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('selectstart', e => { if(e.target.tagName!=='INPUT') e.preventDefault(); });
 
 // ══ HIIT TIMER ══
 const hiitExercises = [
