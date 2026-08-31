@@ -303,11 +303,11 @@ body{color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-heigh
   <!-- C: HIIT -->
   <div class="tc" style="--tc-color:#F97316" onclick="togTC(this)">
     <div class="tc-head">
-      <div><div class="tc-day">Séance C</div><div class="tc-name">HIIT CIRCUIT ⭐</div><div class="tc-meta">40s/15s · 5 tours · Brûle-graisse max</div></div>
+      <div><div class="tc-day">Séance C</div><div class="tc-name">HIIT CIRCUIT ⭐</div><div class="tc-meta">40s/15s · 3 tours · Brûle-graisse max</div></div>
       <div class="tc-badge">HIIT ▼</div>
     </div>
     <div class="tc-body">
-      <div class="hiit-fmt">FORMAT : 40s effort → 15s repos<br>8 exercices = 1 tour · 5 tours · 2 min récup COMPLÈTE entre tours</div>
+      <div class="hiit-fmt">FORMAT : 40s effort → 15s repos<br>8 exercices = 1 tour · 3 tours · 2 min récup COMPLÈTE entre tours</div>
       <div class="ibox ibox-orange"><b>🔥 La plus efficace de toutes les séances.</b> Que du poids de corps : tu peux la faire à la salle, chez toi, en extérieur, en voyage, partout.</div>
       <div class="ibox ibox-gold"><b>🔁 Une semaine sur deux :</b> cette semaine HIIT, la semaine prochaine Fat Burner (Séance D). Pas les deux la même semaine.</div>
 
@@ -329,7 +329,7 @@ body{color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-heigh
       <div class="exo"><div class="exo-top"><span class="exo-n">⑥ Jumping jacks</span><span class="exo-s">40s</span></div><div class="tags"><span class="tag tag-t">Bras et jambes en même temps, rythme soutenu</span><span class="tag tag-t">Atterrissage souple sur toute la plante du pied</span></div></div>
       <div class="exo"><div class="exo-top"><span class="exo-n">⑦ Plank shoulder tap</span><span class="exo-s">40s</span></div><div class="tags"><span class="tag tag-t">Mains sous épaules, hanches immobiles</span><span class="tag tag-t">Touche l'épaule opposée avec la main</span></div></div>
       <div class="exo"><div class="exo-top"><span class="exo-n">⑧ Montées de genoux (high knees)</span><span class="exo-s">40s</span></div><div class="tags"><span class="tag tag-t">Genoux montent à hauteur de hanche, rythme rapide</span><span class="tag tag-t">Bras actifs, buste droit, atterrissage souple</span></div></div>
-      <div class="ibox ibox-orange" style="margin-top:12px;margin-bottom:0"><b>Quand ça devient facile :</b> ajoute un 6e tour si tu te sens bien. Sinon reste à 5 tours, pas de fatigue nerveuse, juste de la régularité.</div>
+      <div class="ibox ibox-orange" style="margin-top:12px;margin-bottom:0"><b>Quand ça devient facile :</b> ajoute un 4e tour si tu te sens bien. Sinon reste à 3 tours, pas de fatigue nerveuse, juste de la régularité.</div>
 
       <div class="blk">FINISHER (au choix)</div>
       <div class="exo"><div class="exo-top"><span class="exo-n">Option A · Bloc abdos complet</span><span class="exo-s">2 tours</span></div><div class="tags"><span class="tag tag-t">30s/exercice, à la suite</span><span class="tag tag-t">Ciseaux jambes tendues → Levée de jambe au sol → Abdos kick out → Dead bug → Reverse crunch → Gainage sur les coudes</span></div></div>
@@ -769,7 +769,7 @@ function timerReset(id) {
   renderTimer(id);
 }
 
-initTimer('hiit', buildCircuitSteps(HIIT_EXOS, 15, 5, 120));
+initTimer('hiit', buildCircuitSteps(HIIT_EXOS, 15, 3, 120));
 initTimer('fatburner', buildCircuitSteps(FATBURNER_EXOS, 15, 3, 120));
 renderTimer('hiit');
 renderTimer('fatburner');
